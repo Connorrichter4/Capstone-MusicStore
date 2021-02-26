@@ -18,7 +18,7 @@
     - state
     - zip
     - credit cards
-    
+
 - Albums
     - id
     - name
@@ -27,6 +27,7 @@
     - date
     - condition
     - image (url)
+    - inventory
     - genre (id)
     - songs (id) (list)
 
@@ -39,6 +40,7 @@
     - id
     - name
     - price
+    - inventory
     - artist (id)
     - album (id)
     - genre (id)
@@ -54,3 +56,25 @@
     - songs (id)
     - albums (id)
     - user (id)
+
+### Pages
+
+- permit all
+    - /login
+    - /signup
+    - /home
+
+- authenticate
+    - /checkout
+    - /add
+
+- authorization
+    - /admin/products
+    - /admin/product/edit/:id
+    - /admin/product/create
+    - /admin/product/delete/:id
+    - /admin/customers
+    - /admin/customers/edit/:id
+    - /admin/customers/create
+    - /admin/customers/delete/:id
+
