@@ -59,6 +59,8 @@
 
 ### Pages
 
+Seed admin data
+
 - permit all
     - /login
     - /signup
@@ -66,7 +68,7 @@
 
 - authenticate
     - /checkout
-    - /add
+    - /add/:id
 
 - authorization
     - /admin/products
