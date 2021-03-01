@@ -37,8 +37,16 @@ public class UserService {
 		return userRepository.findUserByEmail(email);
 	}
 	
-//	public User updateUser(User user) {
-//		
-//	}
+	public User updateUser(User user) {
+		User oldUser = userRepository.findById(user.getId()).get();
+		oldUser.setEmail(user.getEmail());
+		oldUser.setPassword(user.getPassword());
+		oldUser.setAddress(user.getAddress());
+		oldUser.setState(user.getState());
+		oldUser.setZipcode(user.getZipcode());
+		oldUser.setCredit_card(user.getCredit_card());
+		oldUser.setRole(user.getRole());
+		return userRepository.save(oldUser);
+	}
 	
 }
