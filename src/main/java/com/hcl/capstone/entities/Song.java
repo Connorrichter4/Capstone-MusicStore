@@ -21,7 +21,7 @@ public class Song {
 	@ManyToOne
 	private Artist artist;
 	@ManyToOne
-	private Albums album;
+	private Album album;
 	@ManyToMany
 	private Genre genre;
 	
@@ -59,10 +59,10 @@ public class Song {
 	public void setArtist(Artist artist) {
 		this.artist = artist;
 	}
-	public Albums getAlbum() {
+	public Album getAlbum() {
 		return album;
 	}
-	public void setAlbum(Albums album) {
+	public void setAlbum(Album album) {
 		this.album = album;
 	}
 	public Genre getGenre() {

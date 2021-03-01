@@ -18,7 +18,7 @@ public class Artist {
 	@ManyToMany
 	private Song songs;
 	@ManyToMany
-	private Albums albulms;
+	private Album album;
 	
 	public long getId() {
 		return id;
@@ -44,11 +44,11 @@ public class Artist {
 	public void setSongs(Song songs) {
 		this.songs = songs;
 	}
-	public Albums getAlbulms() {
-		return albulms;
+	public Album getAlbulms() {
+		return album;
 	}
-	public void setAlbulms(Albums albulms) {
-		this.albulms = albulms;
+	public void setAlbulms(Album albulms) {
+		this.album = albulms;
 	}
 	
 	
