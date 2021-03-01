@@ -1,6 +1,5 @@
 package com.hcl.capstone.services;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ public class SongService {
 	
 	@Autowired
 	private SongRepository songRepository;
-	Song song = new Song();
+	private Song song = new Song();
 	
 	public Iterable<Song> getAllSong(){
 		return songRepository.findAll();
@@ -27,13 +26,13 @@ public class SongService {
 		return songRepository.findById(id);
 	}
 	
-	public Song createSong(String name, BigDecimal price, Long inventory, Artist artist, Album album, Genre genre) {
+	public Song createSong(String name, Double price, Long inventory, Artist artist, Album album) {
 		song.setName(name);
 		song.setPrice(price);
 		song.setInventory(inventory);
-		song.setArtist(artist);
 		song.setAlbum(album);
-		return song;
+		song.setAlbum(album);
+		return songRepository.save(song);
 	}
 	
 	public Boolean updateSong(Long id, Song song) {
@@ -43,11 +42,14 @@ public class SongService {
 			return false;
 		}else {
 			Song updateSong = foundSong.get();
-			updateSong.setName(song.getName());
-			updateSong.setPrice(song.getPrice());
-			updateSong.setInventory(song.getInventory());
-			updateSong.setArtist(song.getArtist());
-			updateSong.setAlbum(song.getAlbum());
+
+			updateSong.setName(name);
+			updateSong.setPrice(price);
+			updateSong.setInventory(inventory);
+			updateSong.setArtist(artist);
+			updateSong.setAlbum(album);
+			songRepository.save(updateSong);
+
 			return true;
 		}
 	}
