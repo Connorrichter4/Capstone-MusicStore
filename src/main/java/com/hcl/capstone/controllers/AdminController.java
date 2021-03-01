@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.hcl.capstone.entities.Album;
@@ -15,6 +16,7 @@ import com.hcl.capstone.entities.User;
 import com.hcl.capstone.repositories.UserRepository;
 import com.hcl.capstone.services.SongService;
 import com.hcl.capstone.services.UserService;
+
 
 @Controller
 @RequestMapping("/admin")
@@ -72,6 +74,21 @@ public class AdminController {
 	public String showCustomers(ModelMap model) {
 		Iterable<User> users = userService.getAll();
 		model.put("users", users);
-		return "admin-products";
+		return "admin-customers";
 	}
+	
+	@GetMapping("/customer/{id}")
+	public String getCustomer(ModelMap model, @PathVariable Long id) {
+		User user = userService.getUserById(id);
+		
+		model.put("user", user);
+		return "admin-get-customer";
+	}
+	
+	@GetMapping("/customer/delete/{id}")
+	public ModelAndView deleteCustomer(ModelMap model, @PathVariable Long id) {
+		userService.deleteUser(id);
+		return new ModelAndView("redirect:/admin/customers", model);
+	}
+
 }
