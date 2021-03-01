@@ -1,18 +1,11 @@
 # Music Store
 
-### Entities
-- User
-    - Roles (required for spring security)
-- Albums (products)
-    - Songs
-
-
-### Attributes
+### Entities & Attributes
 - User
     - id
     - username (email)
     - password
-    - Roles
+    - Roles (required for Spring Security) (admin/user)
     - Shopping Cart (one to many)
     - address
     - state
