@@ -13,28 +13,54 @@ import com.hcl.capstone.repositories.UserRepository;
 public class UserService {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
-	
+
 //	@Autowired (saving for security)
 //	PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	UserRepository userRepository;
-	
+
+	public Iterable<User> getAll() {
+		return userRepository.findAll();
+	}
+
+	public User getUserById(Long id) {
+		return userRepository.findById(id).get();
+	}
+
 	public User createUser(User user) {
-		
+
 //		user.setPassword(passwordEncoder.encode(user.getPassword())); (keep for security)
 		user.toString();
-		
+
 //		checking if the user already exists in the database
-		if(getUserByEmail(user.getEmail()) != null) {
+		if (getUserByEmail(user.getEmail()) != null) {
 			return null;
 		}
-		
+
 		return userRepository.save(user);
 	}
-	
+
 	public User getUserByEmail(String email) {
 		return userRepository.findUserByEmail(email);
 	}
-	
+
+	public User updateUser(User user) {
+		User oldUser = userRepository.findById(user.getId()).get();
+		oldUser.setEmail(user.getEmail());
+		oldUser.setPassword(user.getPassword());
+		oldUser.setAddress(user.getAddress());
+		oldUser.setState(user.getState());
+		oldUser.setZipcode(user.getZipcode());
+		oldUser.setCredit_card(user.getCredit_card());
+		oldUser.setRole(user.getRole());
+		return userRepository.save(oldUser);
+	}
+
+	public void deleteUser(Long id) {
+		User user = userRepository.findById(id).get();
+		logger.info(user.toString());
+		userRepository.delete(user);
+	}
+
 }
