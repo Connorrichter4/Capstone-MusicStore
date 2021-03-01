@@ -64,11 +64,12 @@ Seed admin data
 - permit all
     - /login
     - /signup
-    - /home
+    - /home (show all albums)
+    - /album/:id (show all songs in album)
+    - /songs (show all songs)
 
 - authenticate
     - /checkout
-    - /add/:id
 
 - authorization
     - /admin/products
@@ -79,4 +80,3 @@ Seed admin data
     - /admin/customers/edit/:id
     - /admin/customers/create
     - /admin/customers/delete/:id
-
