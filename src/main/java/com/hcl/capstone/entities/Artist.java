@@ -1,10 +1,13 @@
 package com.hcl.capstone.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Artist {
@@ -15,10 +18,10 @@ public class Artist {
 	
 	private String name;
 	private String location;
-	@ManyToMany
-	private Song songs;
-	@ManyToMany
-	private Album album;
+	@OneToMany(mappedBy="artist") // changed from ManyToMany
+	private List<Song> songs; //changed to List
+	@OneToMany(mappedBy="artist") // changed to OneToMany
+	private List<Album> album; //changed to List
 	
 	public long getId() {
 		return id;
@@ -38,18 +41,22 @@ public class Artist {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public Song getSongs() {
+	// CHANGED GETTER AND SETTER FOR SONG TO BE A LIST
+	public List<Song> getSongs() {
 		return songs;
 	}
-	public void setSongs(Song songs) {
+	public void setSongs(List<Song> songs) {
 		this.songs = songs;
 	}
-	public Album getAlbulms() {
+	// CHANGED GETTER AND SETTER FOR SONG TO BE A LIST
+	// CHANGED GETTER AND SETTER FOR ALBUM TO BE A LIST
+	public List<Album> getAlbum() {
 		return album;
 	}
-	public void setAlbulms(Album albulms) {
-		this.album = albulms;
+	public void setAlbum(List<Album> album) {
+		this.album = album;
 	}
+	// CHANGED GETTER AND SETTER FOR ALBUM TO BE A LIST
 	
 	
 

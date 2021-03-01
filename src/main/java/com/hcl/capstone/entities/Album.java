@@ -1,6 +1,5 @@
 package com.hcl.capstone.entities;
 
-import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
@@ -8,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -16,38 +16,42 @@ public class Album {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long albumId;
+	private long id;
 
 	private String albumName;
 
-	private BigDecimal price;
+	private Double albumPrice;
+	
+	@ManyToOne
+	private Artist artist;
 
 	private Date date;
 
-	private String condition;
+	private String status;
 
 	private String image;
 
 	private long inventory;
 
-	@OneToOne
+	@OneToOne(mappedBy="album")
 	private Genre genre;
 
-	@OneToMany
+	@OneToMany(mappedBy="album")
 	private List<Song> song;
 
 	public Album() {
 		super();
 	}
 
-	public Album(long albumId, String albumName, BigDecimal price, Date date, String condition, String image,
-			long inventory, Genre genre, List<Song> song) {
+	public Album(long albumId, String albumName, Double albumPrice, Artist artist, Date date, String condition,
+			String image, long inventory, Genre genre, List<Song> song) {
 		super();
-		this.albumId = albumId;
+		this.id = albumId;
 		this.albumName = albumName;
-		this.price = price;
+		this.albumPrice = albumPrice;
+		this.artist = artist;
 		this.date = date;
-		this.condition = condition;
+		this.status = condition;
 		this.image = image;
 		this.inventory = inventory;
 		this.genre = genre;
@@ -55,11 +59,11 @@ public class Album {
 	}
 
 	public long getAlbumId() {
-		return albumId;
+		return id;
 	}
 
 	public void setAlbumId(long albumId) {
-		this.albumId = albumId;
+		this.id = albumId;
 	}
 
 	public String getAlbumName() {
@@ -70,12 +74,12 @@ public class Album {
 		this.albumName = albumName;
 	}
 
-	public BigDecimal getPrice() {
-		return price;
+	public Double getPrice() {
+		return albumPrice;
 	}
 
-	public void setPrice(BigDecimal price) {
-		this.price = price;
+	public void setPrice(Double price) {
+		this.albumPrice = price;
 	}
 
 	public Date getDate() {
@@ -87,11 +91,11 @@ public class Album {
 	}
 
 	public String getCondition() {
-		return condition;
+		return status;
 	}
 
 	public void setCondition(String condition) {
-		this.condition = condition;
+		this.status = condition;
 	}
 
 	public String getImage() {
@@ -128,7 +132,7 @@ public class Album {
 
 	@Override
 	public String toString() {
-		return "Album [albumId=" + albumId + ", albumName=" + albumName + ", condition=" + condition + ", image="
+		return "Album [albumId=" + id + ", albumName=" + albumName + ", condition=" + status + ", image="
 				+ image + ", inventory=" + inventory + "]";
 	}
 

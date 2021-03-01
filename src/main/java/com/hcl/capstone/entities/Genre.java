@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Genre {
@@ -14,6 +15,8 @@ public class Genre {
 	
 	private String name;
 	private String desctiption;
+	@OneToOne //added annotation
+	private Album album; // added Album object
 	
 	public Genre() {
 		
@@ -37,5 +40,14 @@ public class Genre {
 	public void setDesctiption(String desctiption) {
 		this.desctiption = desctiption;
 	}
+
+	public Album getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
+	}
+	
 	
 }
