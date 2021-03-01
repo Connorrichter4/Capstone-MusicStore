@@ -35,25 +35,27 @@ public class SongService {
 		return songRepository.save(song);
 	}
 	
-	public Boolean updateSong(Long id, String name, Double price, Long inventory, Artist artist, Album album) {
+	public Boolean updateSong(Long id, Song song) {
 		Optional<Song> foundSong = getSongById(id);
-		if(foundSong.isEmpty()) {
+		if(foundSong.isPresent()) {
 			//throw new SongNotFoundException(id);
 			return false;
 		}else {
 			Song updateSong = foundSong.get();
+
 			updateSong.setName(name);
 			updateSong.setPrice(price);
 			updateSong.setInventory(inventory);
 			updateSong.setArtist(artist);
 			updateSong.setAlbum(album);
 			songRepository.save(updateSong);
+
 			return true;
 		}
 	}
 	
 	public Boolean deleteSong(Long id) {
-		if(getSongById(id) .isEmpty()) {
+		if(getSongById(id).get() != null) {
 			//throw new SongNotFoundException(id);
 			return false;
 		}else {
