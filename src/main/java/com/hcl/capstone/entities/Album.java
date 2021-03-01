@@ -2,12 +2,14 @@ package com.hcl.capstone.entities;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Album {
@@ -28,18 +30,18 @@ public class Album {
 
 	private long inventory;
 
-	@OneToMany
+	@OneToOne
 	private Genre genre;
 
 	@OneToMany
-	private Song song;
+	private List<Song> song;
 
 	public Album() {
 		super();
 	}
 
 	public Album(long albumId, String albumName, BigDecimal price, Date date, String condition, String image,
-			long inventory, Genre genre, Song song) {
+			long inventory, Genre genre, List<Song> song) {
 		super();
 		this.albumId = albumId;
 		this.albumName = albumName;
@@ -116,11 +118,11 @@ public class Album {
 		this.genre = genre;
 	}
 
-	public Song getSong() {
+	public List<Song> getSong() {
 		return song;
 	}
 
-	public void setSong(Song song) {
+	public void setSong(List<Song> song) {
 		this.song = song;
 	}
 
