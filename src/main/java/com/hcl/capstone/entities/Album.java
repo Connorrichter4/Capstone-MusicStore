@@ -1,5 +1,8 @@
 package com.hcl.capstone.entities;
 
+import java.math.BigDecimal;
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
