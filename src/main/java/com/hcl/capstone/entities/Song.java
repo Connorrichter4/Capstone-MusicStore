@@ -24,8 +24,6 @@ public class Song {
 	private Artist artist;
 	@ManyToOne
 	private Album album;
-	@ManyToMany
-	private Genre genre;
 	
 	public Song() {
 		
@@ -67,17 +65,11 @@ public class Song {
 	public void setAlbum(Album album) {
 		this.album = album;
 	}
-	public Genre getGenre() {
-		return genre;
-	}
-	public void setGenre(Genre genre) {
-		this.genre = genre;
-	}
 
 	@Override
 	public String toString() {
 		return "Song [id=" + id + ", name=" + name + ", price=" + price + ", inventory=" + inventory + ", artist="
-				+ artist + ", album=" + album + ", genre=" + genre + "]";
+				+ artist + ", album=" + album + ", genre=" + "]";
 	}
 	
 	//some change
