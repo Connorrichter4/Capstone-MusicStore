@@ -21,8 +21,15 @@ public class UserService {
 	UserRepository userRepository;
 	
 	public User createUser(User user) {
+		
 //		user.setPassword(passwordEncoder.encode(user.getPassword())); (keep for security)
 		user.toString();
+		
+//		checking if the user already exists in the database
+		if(getUserByEmail(user.getEmail()) != null) {
+			return null;
+		}
+		
 		return userRepository.save(user);
 	}
 	
