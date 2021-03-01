@@ -101,6 +101,13 @@ public class AdminController {
 		return "admin-get-customer";
 	}
 	
+	@PostMapping("/customer/{id}")
+	public RedirectView updateCustomer(@PathVariable Long id, User user ) {
+		user.setId(id);
+		userService.updateUser(user);
+		return new RedirectView("/admin/customers"); 
+	}
+	
 	@GetMapping("/customer/delete/{id}")
 	public ModelAndView deleteCustomer(ModelMap model, @PathVariable Long id) {
 		userService.deleteUser(id);
