@@ -20,6 +20,10 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 	
+	public Iterable<User> getAll(){
+		return userRepository.findAll();
+	}
+	
 	public User createUser(User user) {
 		
 //		user.setPassword(passwordEncoder.encode(user.getPassword())); (keep for security)
@@ -47,6 +51,15 @@ public class UserService {
 		oldUser.setCredit_card(user.getCredit_card());
 		oldUser.setRole(user.getRole());
 		return userRepository.save(oldUser);
+	}
+	
+	public Boolean deleteUser(Long id) {
+		User user = userRepository.findById(id).get();
+		if(user != null) {
+			return false;
+		}
+		userRepository.delete(user);
+		return true;
 	}
 	
 }

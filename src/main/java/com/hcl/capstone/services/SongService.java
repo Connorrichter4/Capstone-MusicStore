@@ -36,18 +36,18 @@ public class SongService {
 		return song;
 	}
 	
-	public Boolean updateSong(Long id, String name, BigDecimal price, Long inventory, Artist artist, Album album, Genre genre) {
+	public Boolean updateSong(Long id, Song song) {
 		Optional<Song> foundSong = getSongById(id);
 		if(foundSong.isPresent()) {
 			//throw new SongNotFoundException(id);
 			return false;
 		}else {
 			Song updateSong = foundSong.get();
-			updateSong.setName(name);
-			updateSong.setPrice(price);
-			updateSong.setInventory(inventory);
-			updateSong.setArtist(artist);
-			updateSong.setAlbum(album);
+			updateSong.setName(song.getName());
+			updateSong.setPrice(song.getPrice());
+			updateSong.setInventory(song.getInventory());
+			updateSong.setArtist(song.getArtist());
+			updateSong.setAlbum(song.getAlbum());
 			return true;
 		}
 	}

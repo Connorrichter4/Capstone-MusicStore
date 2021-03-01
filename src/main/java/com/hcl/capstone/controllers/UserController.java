@@ -26,7 +26,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/signup")
-	public ModelAndView postSignUp(ModelMap model, User user) {
+	public ModelAndView postSignUp(ModelMap model, User user) { // might have to change to modelmap
 		logger.info(user.toString());
 		
 		return new ModelAndView("redirect:/", model);
