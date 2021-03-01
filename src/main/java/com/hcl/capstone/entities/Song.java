@@ -43,10 +43,10 @@ public class Song {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 	public Long getInventory() {
