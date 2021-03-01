@@ -9,8 +9,8 @@ import javax.persistence.Id;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // might have to change
-	private long id;
+	@GeneratedValue(strategy = GenerationType.AUTO) // might have to change
+	private Long id;
 	
 	private String email;
 	
@@ -26,11 +26,11 @@ public class User {
 	
 	private String role;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
