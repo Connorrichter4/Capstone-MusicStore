@@ -18,9 +18,9 @@ public class Album {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	private String albumName;
+	private String name;
 
-	private Double albumPrice;
+	private Double price;
 	
 	@ManyToOne
 	private Artist artist;
@@ -39,101 +39,132 @@ public class Album {
 	@OneToMany(mappedBy="album")
 	private List<Song> song;
 
+	
 	public Album() {
 		super();
 	}
 
-	public Album(long albumId, String albumName, Double albumPrice, Artist artist, Date date, String condition,
-			String image, long inventory, Genre genre, List<Song> song) {
+
+	public Album(long id, String name, Double price, Artist artist, Date date, String status, String image,
+			long inventory, Genre genre, List<Song> song) {
 		super();
-		this.id = albumId;
-		this.albumName = albumName;
-		this.albumPrice = albumPrice;
+		this.id = id;
+		this.name = name;
+		this.price = price;
 		this.artist = artist;
 		this.date = date;
-		this.status = condition;
+		this.status = status;
 		this.image = image;
 		this.inventory = inventory;
 		this.genre = genre;
 		this.song = song;
 	}
 
-	public long getAlbumId() {
+
+	public long getId() {
 		return id;
 	}
 
-	public void setAlbumId(long albumId) {
-		this.id = albumId;
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
-	public String getAlbumName() {
-		return albumName;
+
+	public String getName() {
+		return name;
 	}
 
-	public void setAlbumName(String albumName) {
-		this.albumName = albumName;
+
+	public void setName(String name) {
+		this.name = name;
 	}
+
 
 	public Double getPrice() {
-		return albumPrice;
+		return price;
 	}
 
+
 	public void setPrice(Double price) {
-		this.albumPrice = price;
+		this.price = price;
 	}
+
+
+	public Artist getArtist() {
+		return artist;
+	}
+
+
+	public void setArtist(Artist artist) {
+		this.artist = artist;
+	}
+
 
 	public Date getDate() {
 		return date;
 	}
 
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
-	public String getCondition() {
+
+	public String getStatus() {
 		return status;
 	}
 
-	public void setCondition(String condition) {
-		this.status = condition;
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
+
 
 	public String getImage() {
 		return image;
 	}
 
+
 	public void setImage(String image) {
 		this.image = image;
 	}
+
 
 	public long getInventory() {
 		return inventory;
 	}
 
+
 	public void setInventory(long inventory) {
 		this.inventory = inventory;
 	}
+
 
 	public Genre getGenre() {
 		return genre;
 	}
 
+
 	public void setGenre(Genre genre) {
 		this.genre = genre;
 	}
+
 
 	public List<Song> getSong() {
 		return song;
 	}
 
+
 	public void setSong(List<Song> song) {
 		this.song = song;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Album [albumId=" + id + ", albumName=" + albumName + ", condition=" + status + ", image="
-				+ image + ", inventory=" + inventory + "]";
+		return "Album [id=" + id + ", name=" + name + ", price=" + price + ", artist=" + artist + ", date=" + date
+				+ ", status=" + status + ", image=" + image + ", inventory=" + inventory + ", genre=" + genre
+				+ ", song=" + song + "]";
 	}
-
 }

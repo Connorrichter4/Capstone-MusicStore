@@ -69,7 +69,7 @@ public class Song {
 	@Override
 	public String toString() {
 		return "Song [id=" + id + ", name=" + name + ", price=" + price + ", inventory=" + inventory + ", artist="
-				+ artist + ", album=" + album + ", genre=" + "]";
+				+ artist + ", album=" + album + "]";
 	}
 	
 	//some change
