@@ -44,30 +44,46 @@ public class AdminController {
 	public String getSongProduct(ModelMap model, @PathVariable Long id) {
 		Song song = songService.getSongById(id).get();
 		model.put("product", song);
-		return "admin-get-product";
+		return "admin-get-song";
+	}
+	
+	@PostMapping("/song/{id}")
+	public RedirectView updateSongProduct(@PathVariable Long id, Song song ) {
+		if(songService.updateSong(id,song)) {
+			return new RedirectView("/admin/" + id);
+		}
+		return new RedirectView("/admin/song/" + id); 
+	}
+	
+	@GetMapping("/song/delete/{id}")
+	public RedirectView deleteSongProduct(@PathVariable Long id) {
+		if(songService.deleteSong(id)) {
+			return new RedirectView("/admin/");
+		}
+		return new RedirectView("/admin/song/" + id); 
 	}
 	
 	@GetMapping("/album/{id}")
 	public String getAlbumProduct(ModelMap model, @PathVariable Long id) {
 //		Album album = albumService.getAlbumById(id).get();
 //		model.put("product", album);
-		return "admin-get-product";
+		return "admin-get-album";
 	}
 	
-	@PostMapping("/song/{id}")
-	public RedirectView updateSongProduct(@PathVariable Long id, Song song ) {
-		if(songService.updateSong(id,song)) {
-			return new RedirectView("/song/" + id);
-		}
+	@PostMapping("/album/{id}")
+	public RedirectView updateAlbum(@PathVariable Long id, Album album ) {
+//		if(albumService.updateSong(id,album)) {
+//			return new RedirectView("/admin/" + id);
+//		}
 		return new RedirectView("/admin/song/" + id); 
 	}
 	
-	@PostMapping("/song/delete/{id}")
-	public RedirectView deleteSongProduct(@PathVariable Long id) {
-		if(songService.deleteSong(id)) {
-			return new RedirectView("/song/");
-		}
-		return new RedirectView("/admin/song/" + id); 
+	@GetMapping("/album/delete/{id}")
+	public RedirectView deleteAlbum(@PathVariable Long id) {
+//		if(albumService.deleteSong(id)) {
+//			return new RedirectView("/admin/");
+//		}
+		return new RedirectView("/admin/album/" + id); 
 	}
 	
 	@GetMapping("/customers")
@@ -90,5 +106,6 @@ public class AdminController {
 		userService.deleteUser(id);
 		return new ModelAndView("redirect:/admin/customers", model);
 	}
+	
 
 }
