@@ -38,7 +38,7 @@ public class SongService {
 	
 	public Boolean updateSong(Long id, String name, BigDecimal price, Long inventory, Artist artist, Album album, Genre genre) {
 		Optional<Song> foundSong = getSongById(id);
-		if(foundSong.isEmpty()) {
+		if(foundSong.isPresent()) {
 			//throw new SongNotFoundException(id);
 			return false;
 		}else {
@@ -53,7 +53,7 @@ public class SongService {
 	}
 	
 	public Boolean deleteSong(Long id) {
-		if(getSongById(id) .isEmpty()) {
+		if(getSongById(id).get() != null) {
 			//throw new SongNotFoundException(id);
 			return false;
 		}else {
