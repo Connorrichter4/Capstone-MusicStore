@@ -37,6 +37,9 @@ public class UserService {
 		if (getUserByEmail(user.getEmail()) != null) {
 			return null;
 		}
+		
+		// set the user role to user by default
+		user.setRole("User");
 
 		return userRepository.save(user);
 	}
