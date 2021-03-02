@@ -33,7 +33,7 @@ public class Album {
 
 	private long inventory;
 
-	@OneToOne(mappedBy="album")
+	@ManyToOne
 	private Genre genre;
 
 	@OneToMany(mappedBy="album")
