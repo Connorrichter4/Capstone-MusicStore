@@ -1,5 +1,7 @@
 package com.hcl.capstone.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,8 +18,9 @@ public class Genre {
 	
 	private String name;
 	private String desctiption;
+	
 	@OneToMany(mappedBy="genre")//added annotation
-	private Album album; // added Album object
+	private List<Album> album; // added Album object
 	
 	public Genre() {
 		
@@ -42,13 +45,12 @@ public class Genre {
 		this.desctiption = desctiption;
 	}
 
-	public Album getAlbum() {
+	public List<Album> getAlbum() {
 		return album;
 	}
 
-	public void setAlbum(Album album) {
+	public void setAlbum(List<Album> album) {
 		this.album = album;
 	}
-	
 	
 }
