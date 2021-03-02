@@ -1,5 +1,6 @@
 package com.hcl.capstone.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,24 @@ public class SongService {
 	public Optional<Song> getSongById(Long id){
 		return songRepository.findById(id);
 	}
+	
+	public List<Song> getSongByName(String name){
+		return songRepository.findByName(name);
+	}
+	
+	public List<Song> getSongByPriceRange(Double minPrice, Double maxPrice){
+		return songRepository.findByPriceRange(minPrice, maxPrice);
+	}
+	
+	
+	public List<Song> getSongByAlbumName(String album){ 
+		return songRepository.findByAlbumName(album);
+	}
+	
+	public List<Song> getSongByArtistName(String artist){ 
+		return songRepository.findByArtistName(artist);
+	}
+	 
 	
 	public Song createSong(String name, Double price, Long inventory, Artist artist, Album album) {
 		Song song = new Song();

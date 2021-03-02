@@ -17,7 +17,7 @@
 
 	<div id="wrapper">
 		<div id="header">
-			<h2>Create / Update a Task:</h2>
+			<h2>Create / Update a Artist:</h2>
 
 
 		</div>
@@ -29,7 +29,7 @@
 
 		<form:form action="newArtist" modelAttribute="artist" method="POST">
 			<table>
-				<form:hidden path="id" />
+			<form:hidden path="id" />
 
 				<tr>
 					<td>Artist Name:</td>
@@ -39,7 +39,6 @@
 					<td>Location:</td>
 					<td><form:input path="location" /></td>
 				</tr>
-				
 				
 				<tr>
 					<td colspan="2"><input type="submit" value="Save Changes" />
