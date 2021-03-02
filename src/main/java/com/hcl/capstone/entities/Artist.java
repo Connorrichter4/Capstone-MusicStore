@@ -2,6 +2,7 @@ package com.hcl.capstone.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,13 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+
 @Entity
 public class Artist {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // might have to change
 	private long id;
-	
+	@Column(nullable=false)
 	private String name;
 	private String location;
 	@OneToMany(mappedBy="artist") // changed from ManyToMany
