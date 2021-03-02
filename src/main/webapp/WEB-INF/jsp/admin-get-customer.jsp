@@ -57,7 +57,7 @@
 						class="form-control">
 				</div>
 				
-				
+				<div class="text-center text-danger">${error}</div>
 				<div class="d-flex justify-content-center mt-3">
 					<input type="submit" value="Submit">
 				</div>

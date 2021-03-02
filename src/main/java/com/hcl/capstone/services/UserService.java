@@ -50,6 +50,13 @@ public class UserService {
 
 	public User updateUser(User user) {
 		User oldUser = userRepository.findById(user.getId()).get();
+		
+		// check if the updated email matches another users email
+		if(!oldUser.getEmail().equals(user.getEmail())) {
+			logger.info("email updated");
+			
+		}
+		
 		oldUser.setEmail(user.getEmail());
 		oldUser.setPassword(user.getPassword());
 		oldUser.setAddress(user.getAddress());
