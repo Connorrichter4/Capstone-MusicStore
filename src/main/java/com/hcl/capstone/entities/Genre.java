@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -15,7 +16,7 @@ public class Genre {
 	
 	private String name;
 	private String desctiption;
-	@OneToOne //added annotation
+	@OneToMany(mappedBy="genre")//added annotation
 	private Album album; // added Album object
 	
 	public Genre() {
