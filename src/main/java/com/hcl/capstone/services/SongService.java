@@ -15,8 +15,8 @@ import com.hcl.capstone.repositories.SongRepository;
 public class SongService {
 	
 	@Autowired
-	private SongRepository songRepository;
-	private Song song = new Song();
+	SongRepository songRepository;
+//	private Song song = new Song();
 	
 	public Iterable<Song> getAllSong(){
 		return songRepository.findAll();
@@ -27,6 +27,7 @@ public class SongService {
 	}
 	
 	public Song createSong(String name, Double price, Long inventory, Artist artist, Album album) {
+		Song song = new Song();
 		song.setName(name);
 		song.setPrice(price);
 		song.setInventory(inventory);
@@ -43,11 +44,11 @@ public class SongService {
 		}else {
 			Song updateSong = foundSong.get();
 
-			updateSong.setName(name);
-			updateSong.setPrice(price);
-			updateSong.setInventory(inventory);
-			updateSong.setArtist(artist);
-			updateSong.setAlbum(album);
+			updateSong.setName(song.getName());
+			updateSong.setPrice(song.getPrice());
+			updateSong.setInventory(song.getInventory());
+			updateSong.setArtist(song.getArtist());
+			updateSong.setAlbum(song.getAlbum());
 			songRepository.save(updateSong);
 
 			return true;

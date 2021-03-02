@@ -15,7 +15,7 @@
     	<p>Song Name: ${song.getName()}</p>
     	<p>Song Price: ${song.getPrice()}</p>
     	<p>Song Inventory: ${song.getInventory()}</p>
-    	<p>Album Name: ${song.album.getAlbumName()}</p>
+    	<p>Album Name: ${song.album.getName()}</p>
 	</c:forEach>
 </div>
 
