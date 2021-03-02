@@ -18,10 +18,13 @@ public class Artist {
 	
 	private String name;
 	private String location;
-//	@OneToMany(mappedBy="artist") // changed from ManyToMany
-//	private List<Song> songs; //changed to List
-//	@OneToMany(mappedBy="artist") // changed to OneToMany
-//	private List<Album> album; //changed to List
+	
+	@OneToMany(mappedBy="artist") // changed from ManyToMany
+	private List<Song> songs; //changed to List
+	@OneToMany(mappedBy="artist") // changed to OneToMany
+	private List<Album> album; //changed to List
+	
+	
 	
 	public long getId() {
 		return id;
@@ -41,28 +44,27 @@ public class Artist {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-//	// CHANGED GETTER AND SETTER FOR SONG TO BE A LIST
-//	public List<Song> getSongs() {
-//		return songs;
-//	}
-//	public void setSongs(List<Song> songs) {
-//		this.songs = songs;
-//	}
-	// CHANGED GETTER AND SETTER FOR SONG TO BE A LIST
-	// CHANGED GETTER AND SETTER FOR ALBUM TO BE A LIST
-//	public List<Album> getAlbum() {
-//		return album;
-//	}
-//	public void setAlbum(List<Album> album) {
-//		this.album = album;
-//	}
-	// CHANGED GETTER AND SETTER FOR ALBUM TO BE A LIST
-	@Override
-	public String toString() {
-		return "Artist [id=" + id + ", name=" + name + ", location=" + location + "]";
+
+	public List<Song> getSongs() {
+		return songs;
+	}
+	public void setSongs(List<Song> songs) {
+		this.songs = songs;
 	}
 
-	
+	public List<Album> getAlbum() {
+		return album;
+	}
+	public void setAlbum(List<Album> album) {
+		this.album = album;
+	}
+	@Override
+	public String toString() {
+		return "Artist [id=" + id + ", name=" + name + ", location=" + location + ", songs=" + songs + ", album="
+				+ album + "]";
+	}
+
+
 	
 	
 

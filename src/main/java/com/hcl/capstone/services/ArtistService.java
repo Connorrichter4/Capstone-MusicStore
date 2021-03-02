@@ -35,14 +35,14 @@ public class ArtistService {
 	}
 	
 	
-	public Artist createArtist(String name,String location,List<Song> songs, List<Album> album) {
-		artist.setName(name);
-		artist.setLocation(location);
+//	public Artist createArtist(String name,String location,List<Song> songs, List<Album> album) {
+//		artist.setName(name);
+//		artist.setLocation(location);
 //		artist.setSongs(songs);
 //		artist.setAlbum(album);
-		
-		return artist;
-	}
+//		
+//		return artist;
+//	}
 	
 	
 	public Boolean updateArtist(Long id, String name,String location,List<Song> songs, List<Album> album) {
@@ -53,8 +53,8 @@ public class ArtistService {
 			Artist updateArtist = foundArtist.get();
 			updateArtist.setName(name);
 			updateArtist.setLocation(location);
-//			updateArtist.setSongs(songs);
-//			updateArtist.setAlbum(album);
+			updateArtist.setSongs(songs);
+			updateArtist.setAlbum(album);
 	
 			return true;
 		}
@@ -82,6 +82,8 @@ public class ArtistService {
 		ArtRepo.save( artist2);
 		
 	}
+
+
 	
 	
 	

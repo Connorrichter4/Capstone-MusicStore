@@ -39,10 +39,10 @@
 			<c:forEach var="artist" items="${artists}">
 
 
-				<c:url var="updatelink" value="/updatetask">
+				<c:url var="updatelink" value="/updateartist">
 					<c:param name="Id" value="${artist.id}" />
 				</c:url>
-				<c:url var="deletelink" value="/deletetask">
+				<c:url var="deletelink" value="/deleteartist">
 					<c:param name="Id" value="${artist.id}" />
 				</c:url>
 
