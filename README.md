@@ -1,6 +1,10 @@
 # Music Store
 
 ### Entities & Attributes
+
+![Er Diagram 2 Rough](https://user-images.githubusercontent.com/58124052/109669263-8e8daf80-7b37-11eb-8546-92de30eeabec.png)
+
+
 - User
     - id
     - username (email)
