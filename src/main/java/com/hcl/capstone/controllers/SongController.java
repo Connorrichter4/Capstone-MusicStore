@@ -1,5 +1,8 @@
 package com.hcl.capstone.controllers;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +26,8 @@ public class SongController {
 	@Autowired
 	SongService songService;
 	
-	//AlbumService albumService;
 	
-	//public Artist artist; //get it from artist entity
-	//public Album album; //get it from album entity
-	
-	@RequestMapping(value="/song", method=RequestMethod.GET)
+	@RequestMapping(value="/testSongController", method=RequestMethod.GET)
 	public String showSongs(ModelMap model) {
 		Iterable<Song> listOfSongs = songService.getAllSong();
 		listOfSongs.forEach(song -> logger.info(song.toString()));
@@ -36,6 +35,65 @@ public class SongController {
 		return "testSongController";
 	}
 	
+	@RequestMapping(value="/searchById", method=RequestMethod.POST)
+	public String SearchSongById(@RequestParam Long id, ModelMap model) {
+		Optional<Song> song = songService.getSongById(id);
+		if(song.isEmpty()) {
+			model.addAttribute("songIdNotFound", "The Song does not exist.");
+		}else {
+			model.addAttribute("songFoundById", song.get());
+			logger.info(song.toString());
+		}
+		return "testSongController";
+	}
+	
+	@RequestMapping(value="/searchByName", method=RequestMethod.POST)
+	public String SearchSongByName(@RequestParam String name, ModelMap model) {
+		List<Song> songs = songService.getSongByName(name);
+		if(songs.isEmpty()) {
+			model.addAttribute("songNameNotFound", "The Song does not exist.");
+		}else {
+			model.addAttribute("songFoundByName", songs);
+			logger.info(songs.toString());
+		}
+		return "testSongController";
+	}
+	
+	@RequestMapping(value="/searchByPriceRange", method=RequestMethod.POST)
+	public String SearchSongByPriceRange(@RequestParam Double minPrice, @RequestParam Double maxPrice, ModelMap model) {
+		List<Song> songs = songService.getSongByPriceRange(minPrice, maxPrice);
+		if(songs.isEmpty()) {
+			model.addAttribute("songPriceNotFound", "No Song in this Range exists.");
+		}else {
+			model.addAttribute("songFoundByPrice", songs);
+			logger.info(songs.toString());
+		}
+		return "testSongController";
+	}
+	
+	@RequestMapping(value="/searchByAlbumName", method=RequestMethod.POST)
+	public String SearchSongByAlbumName(@RequestParam String albumName, ModelMap model) {
+		List<Song> songs = songService.getSongByAlbumName(albumName);
+		if(songs.isEmpty()) {
+			model.addAttribute("songAlbumNotFound", "The Song does not exist.");
+		}else {
+			model.addAttribute("songFoundByAlbumName", songs);
+			logger.info(songs.toString());
+		}
+		return "testSongController";
+	}
+	
+	@RequestMapping(value="/searchByArtistName", method=RequestMethod.POST)
+	public String SearchSongByArtistName(@RequestParam String artistName, ModelMap model) {
+		List<Song> songs = songService.getSongByArtistName(artistName);
+		if(songs.isEmpty()) {
+			model.addAttribute("songArtistNotFound", "The Song does not exist.");
+		}else {
+			model.addAttribute("songFoundByArtistName", songs);
+			logger.info(songs.toString());
+		}
+		return "testSongController";
+	}
 	
 	/*
 	 * @RequestMapping(value="/addSong", method=RequestMethod.POST) String
