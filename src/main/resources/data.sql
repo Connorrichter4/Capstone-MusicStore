@@ -1,3 +1,7 @@
+insert into user (email, password, address, state, zipcode, credit_card, role) values ('user@user.com','password', '1234 apple st', 'NY', '12345', '123456789', 'admin');
+insert into user (email, password, address, state, zipcode, credit_card, role) values ('test@test.com','password', '1234 apple st', 'NY', '12345', '123456789', 'admin');
+
+
 insert into artist values(1,'Korea','BLACKPINK');
 insert into artist values(2,'Korea','BTS');
 insert into song (name, inventory, price, album_id, artist_id) values ('Good News',4, 10, 1, 1 );
