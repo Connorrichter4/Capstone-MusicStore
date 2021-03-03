@@ -57,7 +57,7 @@ public class SongService {
 	
 	public Boolean updateSong(Long id, Song song) {
 		Optional<Song> foundSong = getSongById(id);
-		if(foundSong.isPresent()) {
+		if(!foundSong.isPresent()) {
 			//throw new SongNotFoundException(id);
 			return false;
 		}else {

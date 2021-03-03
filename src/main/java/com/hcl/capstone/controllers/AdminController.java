@@ -1,5 +1,10 @@
 package com.hcl.capstone.controllers;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,6 +19,7 @@ import com.hcl.capstone.entities.Album;
 import com.hcl.capstone.entities.Song;
 import com.hcl.capstone.entities.User;
 import com.hcl.capstone.repositories.UserRepository;
+import com.hcl.capstone.services.AlbumService;
 import com.hcl.capstone.services.SongService;
 import com.hcl.capstone.services.UserService;
 
@@ -22,21 +28,23 @@ import com.hcl.capstone.services.UserService;
 @RequestMapping("/admin")
 public class AdminController {
 	
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@Autowired
 	SongService songService;
 	
 	@Autowired
 	UserService userService;
 	
-//	@Autowired
-//	AlbumService albumService;
+	@Autowired
+	AlbumService albumService;
 
 	@GetMapping("/")
 	public String showProducts(ModelMap model) {
 		Iterable<Song> songs = songService.getAllSong();
-//		Iterable<Album> albums = albumService.getAllAlbum();
+		Iterable<Album> albums = albumService.findAllAlbums();
 		model.put("songs", songs);
-//		model.put("albums", albums);
+		model.put("albums", albums);
 		return "admin-products";
 	}
 	
@@ -102,10 +110,20 @@ public class AdminController {
 	}
 	
 	@PostMapping("/customer/{id}")
-	public RedirectView updateCustomer(@PathVariable Long id, User user ) {
+	public ModelAndView updateCustomer(ModelMap model, @PathVariable Long id, User user ) {
 		user.setId(id);
+		// verify valid email using regex
+		Pattern pattern = Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
+		Matcher matcher = pattern.matcher(user.getEmail());
+		System.out.println(matcher.matches());
+		if(!matcher.matches()) {
+			logger.info("Invalid Email Input");
+			model.put("error", "Email Must Be Valid");
+			return new ModelAndView("admin-get-customer", model);
+		}
+	
 		userService.updateUser(user);
-		return new RedirectView("/admin/customers"); 
+		return new ModelAndView("redirect:/admin/customers"); 
 	}
 	
 	@GetMapping("/customer/delete/{id}")

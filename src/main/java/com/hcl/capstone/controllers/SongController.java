@@ -38,7 +38,7 @@ public class SongController {
 	@RequestMapping(value="/searchById", method=RequestMethod.POST)
 	public String SearchSongById(@RequestParam Long id, ModelMap model) {
 		Optional<Song> song = songService.getSongById(id);
-		if(song.isEmpty()) {
+		if(!song.isPresent()) {
 			model.addAttribute("songIdNotFound", "The Song does not exist.");
 		}else {
 			model.addAttribute("songFoundById", song.get());

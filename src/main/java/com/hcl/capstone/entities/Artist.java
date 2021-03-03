@@ -17,17 +17,15 @@ public class Artist {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // might have to change
 	private long id;
-	@Column(nullable=false)
+
 	private String name;
 	private String location;
-	
+
 	@OneToMany(mappedBy="artist") // changed from ManyToMany
 	private List<Song> songs; //changed to List
 	@OneToMany(mappedBy="artist") // changed to OneToMany
 	private List<Album> album; //changed to List
-	
-	
-	
+
 	public long getId() {
 		return id;
 	}
@@ -59,12 +57,16 @@ public class Artist {
 	}
 	public void setAlbum(List<Album> album) {
 		this.album = album;
-	}
+
+
+	};
+
 	@Override
 	public String toString() {
-		return "Artist [id=" + id + ", name=" + name + ", location=" + location + ", songs=" + songs + ", album="
-				+ album + "]";
+		return "Artist [id=" + id + ", name=" + name + ", location=" + location + "]";
 	}
+	
+
 
 
 	

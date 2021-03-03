@@ -8,5 +8,4 @@ import com.hcl.capstone.entities.Album;
 @Repository
 public interface AlbumRepository extends CrudRepository<Album, Long> {
 
-	public boolean findByName(String name);
 }

@@ -1,3 +1,4 @@
+
 package com.hcl.capstone.services;
 
 
@@ -47,7 +48,7 @@ public class ArtistService {
 	
 	public Boolean updateArtist(Long id, String name,String location,List<Song> songs, List<Album> album) {
 		Optional<Artist> foundArtist = ArtRepo.findById(id);
-		if(foundArtist.isEmpty()) {
+		if(!foundArtist.isPresent()) {
 			return false;
 		}else {
 			Artist updateArtist = foundArtist.get();
@@ -64,7 +65,7 @@ public class ArtistService {
 	
 	public Boolean deleteArtist(Long id) {
 		Optional<Artist> foundArtist = ArtRepo.findById(id);
-		if(foundArtist.isEmpty()) {
+		if(!foundArtist.isPresent()) {
 			return false;
 		}else {
 			
@@ -91,3 +92,4 @@ public class ArtistService {
 	
 
 }
+
