@@ -43,7 +43,7 @@
 					<td>${album.inventory}</td>
 
 
-					<td><a href="/edit-task/${album.id}"><i
+					<td><a href="/admin/album/${album.id}"><i
 							 class="far fa-edit"></i></a></td>
 					<td><a href="/delete-task/${album.id}"><i
 							 class="fas fa-trash"></i></a></td>
@@ -77,9 +77,9 @@
 					<td>${song.inventory}</td>
 
 
-					<td><a href="/edit-task/${album.id}"><i
+					<td><a href="/admin/song/${song.id}"><i
 							 class="far fa-edit"></i></a></td>
-					<td><a href="/delete-task/${album.id}"><i
+					<td><a href="/delete-task/${song.id}"><i
 							 class="fas fa-trash"></i></a></td>
 
 				</tr>

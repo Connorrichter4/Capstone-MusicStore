@@ -3,6 +3,8 @@ package com.hcl.capstone.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ import com.hcl.capstone.repositories.SongRepository;
 
 @Service
 public class SongService {
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	SongRepository songRepository;
@@ -40,6 +44,10 @@ public class SongService {
 		return songRepository.findByAlbumName(album);
 	}
 	
+	public List<Song> sortSongsBySortedName(){
+		return songRepository.findByOrderByName();
+	}
+	
 	public List<Song> getSongByArtistName(String artist){ 
 		return songRepository.findByArtistName(artist);
 	}
@@ -61,8 +69,9 @@ public class SongService {
 			//throw new SongNotFoundException(id);
 			return false;
 		}else {
+			
 			Song updateSong = foundSong.get();
-
+			
 			updateSong.setName(song.getName());
 			updateSong.setPrice(song.getPrice());
 			updateSong.setInventory(song.getInventory());
