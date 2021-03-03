@@ -48,7 +48,7 @@
 
 					<td><a href="/admin/album/${album.id}"><i
 							class="far fa-edit"></i></a></td>
-					<td><a href="/delete-task/${album.id}"><i
+					<td><a href="/admin/album/delete/${album.id}"><i
 							class="fas fa-trash"></i></a></td>
 
 				</tr>

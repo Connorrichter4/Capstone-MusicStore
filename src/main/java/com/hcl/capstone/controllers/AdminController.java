@@ -20,7 +20,6 @@ import com.hcl.capstone.entities.Album;
 import com.hcl.capstone.entities.Artist;
 import com.hcl.capstone.entities.Song;
 import com.hcl.capstone.entities.User;
-import com.hcl.capstone.repositories.UserRepository;
 import com.hcl.capstone.services.AlbumService;
 import com.hcl.capstone.services.ArtistService;
 import com.hcl.capstone.services.SongService;
@@ -43,6 +42,8 @@ public class AdminController {
 
 	@Autowired
 	ArtistService artistService;
+	
+
 
 	@GetMapping("/")
 	public String showProducts(ModelMap model) {
@@ -52,6 +53,16 @@ public class AdminController {
 		model.put("albums", albums);
 		return "admin-products";
 	}
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * 			Song Controls
+	 * 
+	 * 
+	 * 
+	 */
 
 	@GetMapping("/song/create")
 	public String createSongForm(ModelMap model) {
@@ -114,29 +125,92 @@ public class AdminController {
 		}
 		return new RedirectView("/admin/");
 	}
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * 			Album Controls
+	 * 
+	 * 
+	 * 
+	 */
+	
+	@GetMapping("/album/create")
+	public String createAlbumForm(ModelMap model) {
+
+//		Iterable<Album> albums = albumService.findAllAlbums();
+		Iterable<Artist> artists = artistService.getAllArtist();
+//		model.put("albums", albums);
+		model.put("artists", artists);
+		
+		return "admin-create-album";
+	}
+	
+	@PostMapping("/album/create")
+	public RedirectView createAlbumProduct(ModelMap model, Album album, @RequestParam Long artist_id) {
+		
+		album.setArtist(artistService.getArtistById(artist_id).get());
+
+		logger.info(album.toString());
+
+		albumService.createAlbum(album);
+		return new RedirectView("/admin/");
+
+	}
 
 	@GetMapping("/album/{id}")
 	public String getAlbumProduct(ModelMap model, @PathVariable Long id) {
-//		Album album = albumService.getAlbumById(id).get();
-//		model.put("product", album);
-		return "admin-get-album";
+		
+		Album album = albumService.findAlbum(id);
+		logger.info(album.toString());
+		
+		Iterable<Artist> artists = artistService.getAllArtist();
+		
+		
+		model.put("artists", artists);
+		model.put("album", album);
+		
+		return "admin-edit-album";
 	}
 
 	@PostMapping("/album/{id}")
-	public RedirectView updateAlbum(@PathVariable Long id, Album album) {
-//		if(albumService.updateSong(id,album)) {
-//			return new RedirectView("/admin/" + id);
-//		}
-		return new RedirectView("/admin/song/" + id);
+	public ModelAndView updateAlbumProduct(ModelMap model, @PathVariable Long id, Album album,
+			@RequestParam Long artist_id) {
+		
+		
+		album.setArtist(artistService.getArtistById(artist_id).get());
+	
+
+		logger.info(album.toString());
+		if (albumService.updateAlbum(id, album)) {
+			return new ModelAndView("redirect:/admin/");
+		}
+		model.put("error", "There was an error updating the album");
+		return new ModelAndView("redirect:/admin/album/" + id, model);
 	}
 
 	@GetMapping("/album/delete/{id}")
-	public RedirectView deleteAlbum(@PathVariable Long id) {
-//		if(albumService.deleteSong(id)) {
-//			return new RedirectView("/admin/");
-//		}
-		return new RedirectView("/admin/album/" + id);
+	public RedirectView deleteAlbumProduct(@PathVariable Long id) {
+		logger.info("inside delete function");
+		
+		// need to add model for delete success and failure
+		
+		if (albumService.deleteSong(id)) {
+			return new RedirectView("/admin/");
+		}
+		return new RedirectView("/admin/");
 	}
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * 			Customer Controls
+	 * 
+	 * 
+	 * 
+	 */
 
 	@GetMapping("/customers")
 	public String showCustomers(ModelMap model) {
