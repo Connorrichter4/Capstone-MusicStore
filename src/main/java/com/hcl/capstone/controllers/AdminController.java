@@ -212,43 +212,43 @@ public class AdminController {
 	 * 
 	 */
 
-	@GetMapping("/customers")
-	public String showCustomers(ModelMap model) {
-		Iterable<User> users = userService.getAll();
-		model.put("users", users);
-		return "admin-customers";
-	}
-
-	@GetMapping("/customer/{id}")
-	public String getCustomer(ModelMap model, @PathVariable Long id) {
-		User user = userService.getUserById(id);
-
-		model.put("user", user);
-		return "admin-edit-customer";
-	}
-
-	@PostMapping("/customer/{id}")
-	public ModelAndView updateCustomer(ModelMap model, @PathVariable Long id, User user) {
-		user.setId(id);
-		// verify valid email using regex
-		Pattern pattern = Pattern.compile(
-				"^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
-		Matcher matcher = pattern.matcher(user.getEmail());
-		System.out.println(matcher.matches());
-		if (!matcher.matches()) {
-			logger.info("Invalid Email Input");
-			model.put("error", "Email Must Be Valid");
-			return new ModelAndView("admin-edit-customer", model);
-		}
-
-		userService.updateUser(user);
-		return new ModelAndView("redirect:/admin/customers");
-	}
-
-	@GetMapping("/customer/delete/{id}")
-	public ModelAndView deleteCustomer(ModelMap model, @PathVariable Long id) {
-		userService.deleteUser(id);
-		return new ModelAndView("redirect:/admin/customers", model);
-	}
+//	@GetMapping("/customers")
+//	public String showCustomers(ModelMap model) {
+//		Iterable<User> users = userService.getAll();
+//		model.put("users", users);
+//		return "admin-customers";
+//	}
+//
+//	@GetMapping("/customer/{id}")
+//	public String getCustomer(ModelMap model, @PathVariable Long id) {
+//		User user = userService.getUserById(id);
+//
+//		model.put("user", user);
+//		return "admin-edit-customer";
+//	}
+//
+//	@PostMapping("/customer/{id}")
+//	public ModelAndView updateCustomer(ModelMap model, @PathVariable Long id, User user) {
+//		user.setId(id);
+//		// verify valid email using regex
+//		Pattern pattern = Pattern.compile(
+//				"^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
+//		Matcher matcher = pattern.matcher(user.getEmail());
+//		System.out.println(matcher.matches());
+//		if (!matcher.matches()) {
+//			logger.info("Invalid Email Input");
+//			model.put("error", "Email Must Be Valid");
+//			return new ModelAndView("admin-edit-customer", model);
+//		}
+//
+//		userService.updateUser(user);
+//		return new ModelAndView("redirect:/admin/customers");
+//	}
+//
+//	@GetMapping("/customer/delete/{id}")
+//	public ModelAndView deleteCustomer(ModelMap model, @PathVariable Long id) {
+//		userService.deleteUser(id);
+//		return new ModelAndView("redirect:/admin/customers", model);
+//	}
 
 }
