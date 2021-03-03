@@ -95,14 +95,14 @@ public class SongController {
 		return "testSongController";
 	}
 	
-	/*
-	 * @RequestMapping(value="/addSong", method=RequestMethod.POST) String
-	 * addSongs(@RequestParam String name, @RequestParam Double price,
-	 * 
-	 * @RequestParam Long inventory, Artist artist, Album album) {
-	 * songService.createSong(name, price, inventory, artist, album); return
-	 * "testSongController"; }
-	 */
+	
+//	  @RequestMapping(value="/addSong", method=RequestMethod.POST)
+//	  String addSongs(@RequestParam String name, @RequestParam Double price,
+//			  @RequestParam Long inventory, Artist artist, Album album) {
+//	  songService.createSong(name, price, inventory, artist, album); 
+//	  return "testSongController"; 
+//	  }
+	 
 	
 	
 
