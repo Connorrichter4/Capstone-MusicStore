@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <img src = "${allsong.album.getImage()}">
 <div>
 	<c:forEach items="${allSongs}" var="song">
@@ -19,10 +20,11 @@
 	</c:forEach>
 </div>
 
+
 <br>
 <br>
 <form action = "searchById" method="post">    
-	    <label for="songId">Song Id:</label>
+	    <label for="songId">Search By Song ID:</label>
 	    <input type="text" id="id" name="id"><br><br>
 	    
 	    <input type="submit" value="Submit"><br><br>
@@ -32,6 +34,45 @@
 <br>
 ${songIdNotFound}
 <br>
+
+
+<div id="content">
+	<table class="table">
+		<tr>
+			<th scope="col">Song Name</th>
+			<th scope="col">Song Price</th>
+			<th scope="col">Album Name</th>
+		</tr>
+
+		<c:forEach var="artist" items="${artists}">
+
+
+				<c:url var="updatelink" value="/updateartist">
+					<c:param name="Id" value="${artist.id}" />
+				</c:url>
+				<c:url var="deletelink" value="/deleteartist">
+					<c:param name="Id" value="${artist.id}" />
+				</c:url>
+
+
+				<tr>
+					<td>${artist.getName()}</td>
+					<td>${artist.getLocation()}</td>
+
+					<td><a href="${updatelink }">Update</a> | 
+					<a href="${deletelink }" onclick="if (!(confirm('Are you sure you want to delete this artist ?'))) return false">Delete</a></td>
+
+
+				</tr>
+
+			</c:forEach>
+
+		</table>
+
+</div>
+
+
+
 <div>
 	<p>Song Id: ${songFoundById.getId()}</p>
 	<p>Song Name: ${songFoundById.getName()}</p>
