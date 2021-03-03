@@ -53,13 +53,17 @@ public class SongService {
 	}
 	 
 	
-	public Song createSong(String name, Double price, Long inventory, Artist artist, Album album) {
-		Song song = new Song();
-		song.setName(name);
-		song.setPrice(price);
-		song.setInventory(inventory);
-		song.setAlbum(album);
-		song.setAlbum(album);
+//	public Song createSong(String name, Double price, Long inventory, Artist artist, Album album) {
+//		Song song = new Song();
+//		song.setName(name);
+//		song.setPrice(price);
+//		song.setInventory(inventory);
+//		song.setAlbum(album);
+//		song.setAlbum(album);
+//		return songRepository.save(song);
+//	}
+	
+	public Song createSong(Song song) {
 		return songRepository.save(song);
 	}
 	
@@ -84,7 +88,7 @@ public class SongService {
 	}
 	
 	public Boolean deleteSong(Long id) {
-		if(getSongById(id).get() != null) {
+		if(getSongById(id).get() == null) {
 			//throw new SongNotFoundException(id);
 			return false;
 		}else {
