@@ -36,15 +36,6 @@ public class ArtistService {
 	}
 	
 	
-//	public Artist createArtist(String name,String location,List<Song> songs, List<Album> album) {
-//		artist.setName(name);
-//		artist.setLocation(location);
-//		artist.setSongs(songs);
-//		artist.setAlbum(album);
-//		
-//		return artist;
-//	}
-	
 	
 	public Boolean updateArtist(Long id, String name,String location,List<Song> songs, List<Album> album) {
 		Optional<Artist> foundArtist = ArtRepo.findById(id);
