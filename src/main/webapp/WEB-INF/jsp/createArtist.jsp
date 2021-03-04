@@ -27,7 +27,7 @@
 	<div id="container">
 		<h3></h3>
 
-		<form:form action="newArtist" modelAttribute="artist" method="POST">
+		<form:form action="/admin/newArtist" modelAttribute="artist" method="POST">
 			<table>
 			<form:hidden path="id" />
 
