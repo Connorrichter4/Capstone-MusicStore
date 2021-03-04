@@ -57,6 +57,7 @@ public class Artist {
 	}
 	public void setAlbum(List<Album> album) {
 		this.album = album;
+<<<<<<< Updated upstream
 
 
 	};
@@ -66,6 +67,10 @@ public class Artist {
 		return "Artist [id=" + id + ", name=" + name + ", location=" + location + "]";
 	}
 	
+=======
+	}
+
+>>>>>>> Stashed changes
 
 
 

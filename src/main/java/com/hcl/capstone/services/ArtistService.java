@@ -6,14 +6,11 @@ package com.hcl.capstone.services;
 import java.util.List;
 import java.util.Optional;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hcl.capstone.entities.Album;
 import com.hcl.capstone.entities.Artist;
-
 import com.hcl.capstone.entities.Song;
 import com.hcl.capstone.repositories.ArtistRepository;
 
@@ -48,7 +45,11 @@ public class ArtistService {
 	
 	public Boolean updateArtist(Long id, String name,String location,List<Song> songs, List<Album> album) {
 		Optional<Artist> foundArtist = ArtRepo.findById(id);
+<<<<<<< Updated upstream
 		if(!foundArtist.isPresent()) {
+=======
+		if(foundArtist.isPresent()) { //CHANGED IT isPresent()
+>>>>>>> Stashed changes
 			return false;
 		}else {
 			Artist updateArtist = foundArtist.get();
@@ -65,7 +66,11 @@ public class ArtistService {
 	
 	public Boolean deleteArtist(Long id) {
 		Optional<Artist> foundArtist = ArtRepo.findById(id);
+<<<<<<< Updated upstream
 		if(!foundArtist.isPresent()) {
+=======
+		if(foundArtist.isPresent()) { //CHANGED TO isPresent
+>>>>>>> Stashed changes
 			return false;
 		}else {
 			

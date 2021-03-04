@@ -17,10 +17,16 @@ public class Genre {
 	private long id;
 	
 	private String name;
+<<<<<<< Updated upstream
 	private String desctiption;
 	
 	@OneToMany(mappedBy="genre")//added annotation
 	private List<Album> album; // added Album object
+=======
+	private String description;
+	@OneToMany(mappedBy="genre")//added annotation
+	private List<Album> album; // added Album object // Made Album a list object
+>>>>>>> Stashed changes
 	
 	public Genre() {
 		
@@ -39,12 +45,16 @@ public class Genre {
 		this.name = name;
 	}
 	public String getDesctiption() {
-		return desctiption;
+		return description;
 	}
 	public void setDesctiption(String desctiption) {
-		this.desctiption = desctiption;
+		this.description = desctiption;
 	}
 
+<<<<<<< Updated upstream
+=======
+	// ADDED NEW GETTERS AND SETTERS
+>>>>>>> Stashed changes
 	public List<Album> getAlbum() {
 		return album;
 	}
@@ -52,5 +62,10 @@ public class Genre {
 	public void setAlbum(List<Album> album) {
 		this.album = album;
 	}
+
+
+	
+	// ADDED NEW GETTERS AND SETTERS
+
 	
 }

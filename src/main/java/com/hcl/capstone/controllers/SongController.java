@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.hcl.capstone.entities.Album;
-import com.hcl.capstone.entities.Artist;
-import com.hcl.capstone.entities.Genre;
 import com.hcl.capstone.entities.Song;
 import com.hcl.capstone.services.SongService;
 
@@ -38,7 +35,11 @@ public class SongController {
 	@RequestMapping(value="/searchById", method=RequestMethod.POST)
 	public String SearchSongById(@RequestParam Long id, ModelMap model) {
 		Optional<Song> song = songService.getSongById(id);
+<<<<<<< Updated upstream
 		if(!song.isPresent()) {
+=======
+		if(!song.isPresent()) { //CHANGED TO isPresent()
+>>>>>>> Stashed changes
 			model.addAttribute("songIdNotFound", "The Song does not exist.");
 		}else {
 			model.addAttribute("songFoundById", song.get());
