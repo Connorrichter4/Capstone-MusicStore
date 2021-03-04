@@ -27,8 +27,6 @@ public class User {
 	
 	private String role;
 	
-	@ManyToOne
-	User user;
 
 	public Long getId() {
 		return id;
