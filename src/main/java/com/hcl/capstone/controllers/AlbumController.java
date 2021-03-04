@@ -37,8 +37,7 @@ public class AlbumController {
 	@Autowired
 	SongService songService;
 	
-	@Autowired
-	ArtistService artistService;
+
 	
 	@GetMapping("/album")
 	public String getAllAlbums(ModelMap map) {
@@ -56,7 +55,7 @@ public class AlbumController {
 	
 	@GetMapping("/album/{id}")
 	public String getAlbum(ModelMap map, @PathVariable Long id) {
-		Album album = service.getAlbumById(id).get();
+		Album album = albumService.getAlbumById(id).get();
 		logger.info(album.toString());
 		map.put("album", album);
 		return "test_this_album";
@@ -88,7 +87,7 @@ public class AlbumController {
 
 		logger.info(album.toString());
 
-		service.createAlbum(album);
+		albumService.createAlbum(album);
 		return new RedirectView("/admin/");
 
 	}
@@ -96,7 +95,7 @@ public class AlbumController {
 	@GetMapping("/admin/album/{id}")
 	public String getAlbumProduct(ModelMap model, @PathVariable Long id) {
 		
-		Album album = service.getAlbumById(id).get();
+		Album album = albumService.getAlbumById(id).get();
 		logger.info(album.toString());
 		
 		Iterable<Artist> artists = artistService.getAllArtist();
@@ -117,7 +116,7 @@ public class AlbumController {
 	
 
 		logger.info(album.toString());
-		if (service.updateAlbum(id, album)) {
+		if (albumService.updateAlbum(id, album)) {
 			return new ModelAndView("redirect:/admin/");
 		}
 		model.put("error", "There was an error updating the album");
@@ -130,7 +129,7 @@ public class AlbumController {
 		
 		// need to add model for delete success and failure
 		
-		if (service.deleteAlbum(id)) {
+		if (albumService.deleteAlbum(id)) {
 			return new RedirectView("/admin/");
 		}
 		return new RedirectView("/admin/");

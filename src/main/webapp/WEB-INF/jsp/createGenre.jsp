@@ -43,7 +43,7 @@
 					<td><form:input path="description" /></td>
 				</tr>
 
-				<tr>
+				<%-- <tr>
 					<td>Albums:</td>
 
 					<form:select path="album" id="id" >
@@ -52,7 +52,7 @@
 						<form:options  items="${allalbums}" itemValue="id" itemLabel="name" />
 					</form:select>
 
-				</tr>
+				</tr> --%>
 
 
 				<tr>
