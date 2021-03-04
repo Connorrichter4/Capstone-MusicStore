@@ -16,8 +16,10 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.hcl.capstone.entities.Album;
 import com.hcl.capstone.entities.Artist;
+import com.hcl.capstone.entities.Genre;
 import com.hcl.capstone.services.AlbumService;
 import com.hcl.capstone.services.ArtistService;
+import com.hcl.capstone.services.GenreService;
 
 
 
@@ -31,6 +33,9 @@ public class AlbumController {
 	
 	@Autowired
 	ArtistService artistService;
+	
+	@Autowired
+	GenreService genreService;
 	
 	@GetMapping("/album")
 	public String getAllAlbums(ModelMap map) {
@@ -59,9 +64,9 @@ public class AlbumController {
 	@GetMapping("/admin/album/create")
 	public String createAlbumForm(ModelMap model) {
 
-//		Iterable<Album> albums = albumService.findAllAlbums();
+		Iterable<Genre> genres = genreService.getAllGenre();
 		Iterable<Artist> artists = artistService.getAllArtist();
-//		model.put("albums", albums);
+		model.put("genres", genres);
 		model.put("artists", artists);
 		
 		return "admin-create-album";

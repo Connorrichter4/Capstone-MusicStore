@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.hcl.capstone.entities.Album;
 
 import com.hcl.capstone.entities.Genre;
+import com.hcl.capstone.entities.Song;
 import com.hcl.capstone.repositories.AlbumRepository;
 import com.hcl.capstone.repositories.GenreRepository;
 
@@ -22,9 +23,16 @@ public class GenreService {
 
 	@Autowired
 	AlbumRepository albumRepo;
+	
+	@Autowired 
+	AlbumService albumService;
 
 	public Iterable<Genre> getAllGenre() {
 		return genreRepo.findAll();
+	}
+	
+	public List<Genre> sortSongsBySortedName(){
+		return genreRepo.findByOrderByName();
 	}
 
 	public Optional<Genre> getGenreById(Long id) {
@@ -57,31 +65,25 @@ public class GenreService {
 		if (!foundGenre.isPresent()) {
 			return false;
 		} else {
-
+			List<Album> foundAlbums = albumService.finByGenreId(id);
+			for(Album album : foundAlbums) {
+				album.setGenre(null);
+			}
+			
 			genreRepo.deleteById(id);
-
 			return true;
 		}
 
 	}
 
-	public Genre createGenre(String name, String description, Long albumid) {
-
-		Album albumFromDb = albumRepo.findById(albumid).get();
-		albumFromDb.toString();
-
-		List<Album> album = new ArrayList<Album>();
-		album.add(albumFromDb);
+	public Genre createGenre(String name, String description) {
 
 		Genre newGenre = new Genre();
 		newGenre.setName(name);
 		newGenre.setDescription(description);
-		newGenre.setAlbum(album);
 		Genre createdGenre = genreRepo.save(newGenre);
 
-		createdGenre.toString();
-
-		return genreRepo.save(newGenre);
+		return createdGenre;
 	}
 
 }

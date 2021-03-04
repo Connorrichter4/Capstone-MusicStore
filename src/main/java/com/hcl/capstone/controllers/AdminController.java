@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.hcl.capstone.entities.Album;
 import com.hcl.capstone.entities.Artist;
+import com.hcl.capstone.entities.Genre;
 import com.hcl.capstone.entities.Song;
 //import com.hcl.capstone.entities.User;
 import com.hcl.capstone.services.AlbumService;
 import com.hcl.capstone.services.ArtistService;
+import com.hcl.capstone.services.GenreService;
 import com.hcl.capstone.services.SongService;
 import com.hcl.capstone.services.UserService;
 
@@ -42,6 +44,9 @@ public class AdminController {
 
 	@Autowired
 	ArtistService artistService;
+	
+	@Autowired
+	GenreService genreService;
 
 
 	@GetMapping("/admin")
@@ -51,9 +56,11 @@ public class AdminController {
 		Iterable<Album> albums = albumService.sortAlbumsBySortedName();
 		Iterable<Artist> artists = artistService.sortArtistsBySortedName();
 		Iterable<Song> songs = songService.sortSongsBySortedName();
+		Iterable<Genre> genres = genreService.sortSongsBySortedName();
 		model.addAttribute("albums", albums);
 		model.addAttribute("artists", artists);
 		model.addAttribute("songs", songs);
+		model.addAttribute("genres", genres);
 	
 		
 		return "admin-products";

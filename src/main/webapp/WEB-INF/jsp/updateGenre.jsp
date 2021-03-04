@@ -30,7 +30,7 @@
 	<div id="container">
 		<h3></h3>
 
-		<form:form action="updateGenreinfo" modelAttribute="genre" method="POST">
+		<form:form action="/admin/updateGenreinfo" modelAttribute="genre" method="POST">
 			<table>
 				<form:hidden path="id" />
 
