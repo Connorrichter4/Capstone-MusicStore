@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hcl.capstone.entities.Album;
-import com.hcl.capstone.entities.Artist;
 import com.hcl.capstone.entities.Song;
 import com.hcl.capstone.repositories.AlbumRepository;
 
@@ -24,6 +23,14 @@ public class AlbumService {
 
 	@Autowired
 	SongService songService;
+	
+	/*
+	 * 
+	 * 
+	 * 			Finding Albums   
+	 * 
+	 * 
+	 */
 
 	public List<Album> findAllAlbums() {
 		List<Album> albums = new ArrayList<Album>();
@@ -38,29 +45,21 @@ public class AlbumService {
 		return repo.findByOrderByName();
 	}
 
-	public Iterable<Album> getAllAlbum() {
-		logger.info("inside getallalbum **************************");
-		return repo.findAll();
-	}
-
-	public List<Album> getSongByArtistName(String artist) {
+	public List<Album> getAlbumByArtistName(String artist) {
 		return repo.findByArtistName(artist);
-	}
-
-	public Album findAlbum(Long id) {
-		if (repo.existsById(id)) {
-			logger.info("found the album...");
-			return repo.findById(id).get();
-		} else {
-			logger.info("album not found...");
-			return null; // return empty album if nor found
-		}
-
 	}
 
 	public Optional<Album> getAlbumById(Long id) {
 		return repo.findById(id);
 	}
+	
+	/*
+	 * 
+	 * 
+	 * 			CRUD Albums   
+	 * 
+	 * 
+	 */
 
 	public Album createAlbum(Album album) {
 		return repo.save(album);

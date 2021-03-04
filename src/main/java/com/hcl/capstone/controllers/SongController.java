@@ -19,7 +19,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.hcl.capstone.entities.Album;
 import com.hcl.capstone.entities.Artist;
-import com.hcl.capstone.entities.Genre;
 import com.hcl.capstone.entities.Song;
 import com.hcl.capstone.services.AlbumService;
 import com.hcl.capstone.services.ArtistService;
@@ -108,15 +107,6 @@ public class SongController {
 		return "testSongController";
 	}
 	
-	/*
-	 * @RequestMapping(value="/addSong", method=RequestMethod.POST) String
-	 * addSongs(@RequestParam String name, @RequestParam Double price,
-	 * 
-	 * @RequestParam Long inventory, Artist artist, Album album) {
-	 * songService.createSong(name, price, inventory, artist, album); return
-	 * "testSongController"; }
-	 */
-	
 
 	@GetMapping("admin/song/create")
 	public String createSongForm(ModelMap model) {
@@ -133,7 +123,7 @@ public class SongController {
 	public RedirectView createSongProduct(ModelMap model, Song song, @RequestParam Long artist_id,
 			@RequestParam Long album_id) {
 		
-		song.setAlbum(albumService.findAlbum(album_id));
+		song.setAlbum(albumService.getAlbumById(album_id).get());
 		song.setArtist(artistService.getArtistById(artist_id).get());
 
 
@@ -157,7 +147,7 @@ public class SongController {
 	@PostMapping("/admin/song/{id}")
 	public ModelAndView updateSongProduct(ModelMap model, @PathVariable Long id, Song song,
 			@RequestParam Long artist_id, @RequestParam Long album_id) {
-		song.setAlbum(albumService.findAlbum(album_id));
+		song.setAlbum(albumService.getAlbumById(album_id).get());
 		song.setArtist(artistService.getArtistById(artist_id).get());
 
 		logger.info(song.toString());

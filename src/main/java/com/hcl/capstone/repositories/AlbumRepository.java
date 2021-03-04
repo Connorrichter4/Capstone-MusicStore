@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.hcl.capstone.entities.Album;
-import com.hcl.capstone.entities.Song;
 
 @Repository
 public interface AlbumRepository extends CrudRepository<Album, Long> {

@@ -23,7 +23,7 @@ public class ArtistService {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
-	ArtistRepository ArtRepo;
+	ArtistRepository artRepo;
 	
 	@Autowired
 	AlbumService albumService;
@@ -31,31 +31,38 @@ public class ArtistService {
 	@Autowired
 	SongService songService;
 	
-	Artist artist=new Artist();
-	
-	
+	/*
+	 * 
+	 * 
+	 * 			Finding Albums   
+	 * 
+	 * 
+	 */
 	
 	public Iterable<Artist> getAllArtist(){
-		return ArtRepo.findAll();
+		return artRepo.findAll();
 	}
 	
 	public Optional<Artist> getArtistById(Long id){
-		return ArtRepo.findById(id);
+		return artRepo.findById(id);
+	}
+	
+	public List<Artist> sortArtistsBySortedName() {
+		return artRepo.findByOrderByName();
 	}
 	
 	
-//	public Artist createArtist(String name,String location,List<Song> songs, List<Album> album) {
-//		artist.setName(name);
-//		artist.setLocation(location);
-//		artist.setSongs(songs);
-//		artist.setAlbum(album);
-//		
-//		return artist;
-//	}
+	/*
+	 * 
+	 * 
+	 * 			CRUD Albums   
+	 * 
+	 * 
+	 */
 	
 	
 	public Boolean updateArtist(Long id, String name,String location,List<Song> songs, List<Album> album) {
-		Optional<Artist> foundArtist = ArtRepo.findById(id);
+		Optional<Artist> foundArtist = artRepo.findById(id);
 		if(!foundArtist.isPresent()) {
 			return false;
 		}else {
@@ -72,7 +79,7 @@ public class ArtistService {
 	
 	public Boolean deleteArtist(Long id) {
 		
-		Artist foundArtist = ArtRepo.findById(id).get();
+		Artist foundArtist = artRepo.findById(id).get();
 		
 		
 		if(foundArtist == null) {
@@ -89,14 +96,14 @@ public class ArtistService {
 			
 			// find and delete all albums
 			
-			List<Album> albums = albumService.getSongByArtistName(foundArtist.getName());
+			List<Album> albums = albumService.getAlbumByArtistName(foundArtist.getName());
 			
 			for(Album album: albums) {
 				logger.info(album.toString());
 				albumService.deleteAlbum(album.getId());
 			}
 			
-			ArtRepo.deleteById(id);
+			artRepo.deleteById(id);
 			
 			return true;
 		}
@@ -107,7 +114,7 @@ public class ArtistService {
 		
 		System.out.println("should be saved now");
 		
-		ArtRepo.save( artist2);
+		artRepo.save( artist2);
 		
 	}
 
