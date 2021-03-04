@@ -59,6 +59,7 @@ public class Artist {
 		this.album = album;
 
 
+
 	};
 
 	@Override
@@ -67,9 +68,12 @@ public class Artist {
 	}
 	
 
-
-
-	
-	
-
 }
+
+
+
+
+
+	
+	
+

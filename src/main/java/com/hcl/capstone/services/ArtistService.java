@@ -6,6 +6,7 @@ package com.hcl.capstone.services;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import com.hcl.capstone.entities.Album;
 import com.hcl.capstone.entities.Artist;
-
 import com.hcl.capstone.entities.Song;
 import com.hcl.capstone.repositories.ArtistRepository;
 
@@ -63,6 +63,7 @@ public class ArtistService {
 	
 	
 	public Boolean updateArtist(Long id, String name,String location,List<Song> songs, List<Album> album) {
+
 		Optional<Artist> foundArtist = artRepo.findById(id);
 		if(!foundArtist.isPresent()) {
 			return false;
@@ -79,10 +80,7 @@ public class ArtistService {
 	}
 	
 	public Boolean deleteArtist(Long id) {
-		
 		Artist foundArtist = artRepo.findById(id).get();
-		
-		
 		if(foundArtist == null) {
 			return false;
 		}else {
@@ -118,13 +116,6 @@ public class ArtistService {
 		artRepo.save( artist2);
 		
 	}
-
-
-	
-	
-	
-	
-	
 
 }
 

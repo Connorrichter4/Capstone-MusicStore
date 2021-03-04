@@ -43,9 +43,22 @@
 					<td><form:input path="description" /></td>
 				</tr>
 
-				<tr>
+				<%-- <tr>
 					<td>Albums:</td>
+
 				</tr>
+
+
+					<form:select path="album" id="id" >
+						<form:option value="-" label="--Please Select" />
+						
+						<form:options  items="${allalbums}" itemValue="id" itemLabel="name" />
+					</form:select>
+
+				</tr> --%>
+
+
+
 				<tr>
 					<td colspan="2"><input type="submit" value="Save Changes" />
 					</td>

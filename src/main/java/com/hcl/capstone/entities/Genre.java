@@ -18,9 +18,10 @@ public class Genre {
 	
 	private String name;
 	private String description;
-	
+
 	@OneToMany(mappedBy="genre")//added annotation
-	private List<Album> album; // added Album object
+	private List<Album> album; // added Album object // Made Album a list object
+
 	
 	public Genre() {
 		
@@ -56,11 +57,11 @@ public class Genre {
 		this.album = album;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Genre [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
-	
 	
 	
 }
