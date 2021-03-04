@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Song {
 	
@@ -18,6 +20,7 @@ public class Song {
 	private Long inventory;
 	
 	@ManyToOne
+	@JsonIgnore //Use this for toStrong
 	private Artist artist;
 	@ManyToOne
 	private Album album;
@@ -70,13 +73,5 @@ public class Song {
 //				+ artist.getId() + " artist name=" + artist.getName() + ", album id=" + album.getId() + 
 //				", album name=" + album.getName() + ", image=" + album.getImage() +  "]";
 //	}
-	
-	
-	
-	//some change
-	
-	
-	
-
 
 }

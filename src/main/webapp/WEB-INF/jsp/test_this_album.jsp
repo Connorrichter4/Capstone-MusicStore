@@ -16,7 +16,7 @@
 			<div class="row">			
 
 	                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-	                   	<img class="col-12 rounded float-left img-thumbnail img-fluid" src="../${album.image}">
+	                   	<img class="col-12 rounded float-left img-thumbnail img-fluid" src="../img/album/${album.image}">
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
                        <h3 class="card-title text-center col-12">${album.name}</h3>

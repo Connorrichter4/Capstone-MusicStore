@@ -1,100 +1,286 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-	<head>
-	    <!-- Required meta tags -->
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	
-		<meta charset="ISO-8859-1">
-		<title>Album test</title>
-	</head>
-	<body>
-		<div class="container" style="background-color: red;">
-		
-			<div class="row">
-				<div class="sidebar col-1" style="background-color: blue;">
-					This is the sidebar...
-				</div>	
-				<div class="main col-11" style="background-color: yellow;">
-					<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					  <a class="navbar-brand" href="#">Navbar</a>
-					  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					    <span class="navbar-toggler-icon"></span>
-					  </button>
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<title>Album test</title>
+</head>
+<body>
+	<!-- START CONTAINER -->
+	<div class="container main">
+		<!-- 	START MAIN ROW -->
+		<div class="row">
+			<!-- 		START MAIN CONTENT -->
+			<div class="main">
+				<!-- 			START NAVBAR -->
+				<nav class="conatiner-fluid navbar navbar-expand-lg navbar-light bg-light">
 					
-					  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-					    <ul class="navbar-nav mr-auto">
-					      <li class="nav-item active">
-					        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-					      </li>
-					      <li class="nav-item">
-					        <a class="nav-link" href="#">Link</a>
-					      </li>
-					      <li class="nav-item dropdown">
-					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					          Dropdown
-					        </a>
-					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					          <a class="dropdown-item" href="#">Action</a>
-					          <a class="dropdown-item" href="#">Another action</a>
-					          <div class="dropdown-divider"></div>
-					          <a class="dropdown-item" href="#">Something else here</a>
-					        </div>
-					      </li>
-					      <li class="nav-item">
-					        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-					      </li>
-					    </ul>
-					    <form class="form-inline my-2 my-lg-0">
-					      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-					      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-					    </form>
-					  </div>
-					</nav>
-				
-				
-					<div>
-						<div class="row">
-							<c:forEach items="${albums}" var="album">				
-								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
-			 		                <div class="card">
-					                    <a href="/album/${album.id}"><img class="card-img-top img-thumbnail" src="${album.image}"></a>
-					                    <div class="card-body text-center">
-					                    	<div class="car-title">
-					                        	<p>${album.name}<br/>${album.artist.name}</p>
-					                    	</div>
-					                        <div class="card-text">
-					                        	${album.status}
-					                        	<span class="card-text text-center col-4">Price: $${album.price}</span>
-					                        </div>
-					                        <a href="#" class="btn btn-secondary col-4">Buy</a>
-					                    </div>
-					                </div>
+					
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<a class="navbar-brand" href="#">BRAND LOGO</a>
+					<button type="submit" class="btn btn-success float-right"><i class="fa fa-shopping-cart"></i> Cart</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item active"><a class="nav-link" href="#">Home
+									<span class="sr-only">(current)</span>
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">Other</a>
+							</li>
+						</ul>
+					</div>
+					
+				</nav>
+				<!-- 			END NAVBAR -->
+				<!-- 			START CAROUSEL -->
+				<div class="jumbotron">
+					<div id="carousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+						<div class="carousel-indicators">
+							<button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active"></button>
+							<button type="button" data-bs-target="#carousel" data-bs-slide-to="1"></button>
+							<button type="button" data-bs-target="#carousel" data-bs-slide-to="2"></button>
+						</div>
+						<div class="carousel-inner">
+							<div class="carousel-item active ">
+								<img src="/img/album/the_album.png" class="d-block w-100">
+								<div class="carousel-caption d-none d-md-block caption-1">
+								
+								
+									<h1>First slide label</h1>
+									<p>Some representative placeholder content for the first slide.</p>
+									
+									
+									
 								</div>
-							</c:forEach>						
+							</div>
+							<div class="carousel-item">
+								<img src="img/artist/blackpink.png" class="d-block w-100">
+								<div class="carousel-caption d-none d-md-block">
+									<h5>Second slide label</h5>
+									<p>Some representative placeholder content for the second slide.</p>
+								</div>
+							</div>
+							<div class="carousel-item">
+								<img src="img/artist/bts.png" class="d-block w-100">
+								<div class="carousel-caption d-none d-md-block">
+									<h5>Third slide label</h5>
+									<p>Some representative placeholder content for the third slide.</p>
+								</div>
+							</div>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+							<span class="carousel-control-next-icon"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
+				</div>
+				<!-- 			END CAROUSEL -->
+				
+				
+				
+				<!-- 			START SEARCH BAR -->
+				<div class="container row mt-3">
+				
+					<form>
+						<div class="form-group">
+							<input class="form-control" type="search" name="generalSearch" placeholder="Search" aria-label="Search">
+							<button class="btn btn-primary form-control" type="button" data-toggle="collapse" data-target="#advancedSearch">
+								Advanced Search Options</button>						
 						</div>
 					
+						<div class="form-group collapse p-0 m-0" id="advancedSearch">
+							<div class="form-row p-0 m-0" >
+								<input class="form-control" type="search" name="minPriceSearch" placeholder="Minimum Price:">
+							</div>
+							<div class="form-row p-0 m-0">
+								<input class="form-control" type="search" name="maxPriceSearch" placeholder="Maximum Price">							
+							</div>					
+						</div>	
+						<button class="form-control btn btn-success" type="submit" name="search-btn">Search</button>					
+					</form>
+		
+						
+						
+
+				</div>
+
+
+
+
+				<!-- 			END SEARCH BAR -->
+				<!-- 			START CONTENT -->
+				<div class="border">
+					<!-- INSERT TAB DIV HERE -->
+					<div class="container-fluid">
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="nav-item col-3"><a class="nav-link active"
+								data-toggle="tab" href="#albums">Album</a></li>
+							<li class="nav-item col-3"><a class="nav-link"
+								data-toggle="tab" href="#artists">Artist</a></li>
+							<li class="nav-item col-3"><a class="nav-link"
+								data-toggle="tab" href="#songs">Song</a></li>
+							<li class="nav-item col-3"><a class="nav-link"
+								data-toggle="tab" href="#genres">Genre</a></li>
+						</ul>
+						<div class="container-fluid">
+							<div class="tab-content">
+								<div id="albums" class="tab-pane active">
+									<h3>Albums</h3>
+									<div class="row">
+										<c:forEach items="${albums}" var="album">
+											<div class="col-md-2" class="w-100">
+												<a href="/album/${album.id}" class="album-poster"><img
+													src="img/album/ALbum_${album.id}.png"></a>
+												<h4>${album.name}</h4>
+												<p>${album.artist.name}</p>
+											</div>
+										</c:forEach>
+									</div>
+								</div>
+								<div id="artists" class="tab-pane">
+									<h3>Artists</h3>
+									<div class="row">
+										<c:forEach items="${artists}" var="artist">
+											<div class="col-md-2" class="w-100">
+												<a href="/artist/${artist.id}" class="album-poster"><img
+													src="img/artist/Album_${artist.id}.png"></a>
+												<h4>${artist.name}</h4>
+												<p>${artist.location}</p>
+											</div>
+										</c:forEach>
+									</div>
+								</div>
+								<div id="songs" class="tab-pane">
+									<h3>Songs</h3>
+									<div class="row">
+										<table class="table table-dark table-striped">
+											<tr>
+												<th class="col-1">#</th>
+												<th class="col-1"></th>
+												<th class="col-4">NAME</th>
+												<th class="col-3">ALBUM</th>
+												<th class="col-3">ARTIST</th>
+											</tr>
+											<c:forEach items="${songs}" var="song">
+												<tr>
+													<th scope="row">${song.id}</th>
+													<td><a href="/album/${song.album.id}"
+														class="album-poster"><img
+															src="img/album/Album_${song.album.id}.png" class="w-100"></a></td>
+													<td><a href="/song/${song.id}" class="song-link">${song.name}</a></td>
+													<td><a href="/album/${song.album.id}"
+														class="song-link">${song.album.name}</a></td>
+													<td><a href="/artist/${song.artist.id}"
+														class="song-link">${song.artist.name}</a></td>
+												</tr>
+											</c:forEach>
+										</table>
+									</div>
+								</div>
+								<div id="genres" class="tab-pane">
+									<h3>Genres</h3>
+									<div class="row">
+										<table class="table table-dark table-striped">
+											<tr>
+												<th class="col-1">#</th>
+												<th class="col-4">NAME</th>
+												<th class="col-4">DESCRIPTION</th>
+											</tr>
+											<tr>
+												<td>0</td>
+												<td>Genre</td>
+												<td>${genres}</td>
+											</tr>
+<%-- 											<c:forEach items="${genres}" var="genre"> --%>
+<!-- 												<tr> -->
+<!-- 													<td></td> -->
+<%-- 													<th scope="row">${genre.id}</th> --%>
+<%-- 				UNDER CONSTRUCTION					<td><a href="/song/${genre.id}" class="song-link">${genre.name}</a></td> --%>
+<%-- 													<td>${genre.description}</td> --%>
+<!-- 												</tr> -->
+<%-- 											</c:forEach> --%>
+										</table>
+									</div>
+								</div>
+
+
+
+							</div>
+						</div>
 					</div>
-				</div>						
-			</div>	
-				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				</div>
+				<!-- 			END CONTENT -->
+			</div>
+			<!-- 		END MAIN CONTENT -->
 		</div>
-
-		
-		
-
-			
-			
-
-			
+		<!-- 	END MAIN ROW -->
+	</div>
+	<!-- END CONTAINER -->
 
 
-	
 
 
-		
-	</body>
+
+
+
+
+
+
+
+
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+		crossorigin="anonymous"></script>
+</body>
 </html>

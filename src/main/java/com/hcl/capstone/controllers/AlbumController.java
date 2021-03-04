@@ -16,8 +16,12 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.hcl.capstone.entities.Album;
 import com.hcl.capstone.entities.Artist;
+import com.hcl.capstone.entities.Genre;
+import com.hcl.capstone.entities.Song;
 import com.hcl.capstone.services.AlbumService;
 import com.hcl.capstone.services.ArtistService;
+import com.hcl.capstone.services.SongService;
+
 
 
 
@@ -27,7 +31,11 @@ public class AlbumController {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	AlbumService service;
+	AlbumService albumService;
+	@Autowired
+	ArtistService artistService;
+	@Autowired
+	SongService songService;
 	
 	@Autowired
 	ArtistService artistService;
@@ -35,8 +43,14 @@ public class AlbumController {
 	@GetMapping("/album")
 	public String getAllAlbums(ModelMap map) {
 		logger.info("inside get mapping");
-		List<Album> albums = service.findAllAlbums();
+		List<Album> albums = albumService.findAllAlbums();
+		Iterable<Artist> artists = artistService.getAllArtist();
+		Iterable<Song> songs = songService.getAllSong();
+//		Iterable<Song> genres = songService.getAllGenres(); //TODO: ADD GENRE SERVICE LATER
 		map.put("albums", albums);
+		map.put("songs", songs);
+		map.put("artists", artists);
+		map.put("genres", "Under Construction...");	//TODO: add genre service later
 		return "test_album";
 	}
 	
