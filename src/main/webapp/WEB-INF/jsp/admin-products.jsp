@@ -30,6 +30,7 @@
 				<th scope="col">Status</th>
 				<th scope="col">Artist Id</th>
 				<th scope="col">Inventory</th>
+				<th scope="col">Genre</th>
 				<!-- <th scope="col"></th> -->
 				<th scope="col"></th>
 				<th scope="col"></th>
@@ -44,6 +45,14 @@
 					<td>${album.status}</td>
 					<td>${album.artist.name}</td>
 					<td>${album.inventory}</td>
+      				<c:choose>
+         			<c:when test = "${album.genre.name == null}">
+            		<td>Not Specified</td>
+         			</c:when> 
+         			<c:otherwise>
+            		<td>${album.genre.name}</td>
+        		 	</c:otherwise>
+      				</c:choose>
 
 
 					 <td><a href="/admin/album/${album.id}"><i
@@ -122,5 +131,38 @@
 			</c:forEach>
 		</tbody>
 	</table> 
+	
+	
+	<div class="d-flex p-2">
+		<h2>Genre</h2>
+		<a href="/admin/createGenre"><i class="far fa-plus-square fa-2x"></i></a>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Description</th>
+				<!-- <th scope="col"></th> -->
+				<!-- <th scope="col"></th> -->
+				<th scope="col"></th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${genres}" var="genre">
+				<tr>
+					<td>${genre.name}</td>
+					<td>${genre.description}</td>
+
+					<td><a href="/admin/updategenre/${genre.id}"><i
+							class="far fa-edit"></i></a></td>
+					<td><a href="/admin/deletegenre/${genre.id}"><i
+							class="fas fa-trash"></i></a></td>
+
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table> 
+	
 </body>
 </html>

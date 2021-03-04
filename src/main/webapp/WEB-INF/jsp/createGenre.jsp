@@ -46,6 +46,9 @@
 				<%-- <tr>
 					<td>Albums:</td>
 
+				</tr>
+
+
 					<form:select path="album" id="id" >
 						<form:option value="-" label="--Please Select" />
 						
@@ -53,6 +56,7 @@
 					</form:select>
 
 				</tr> --%>
+
 
 
 				<tr>

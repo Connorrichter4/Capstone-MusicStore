@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.hcl.capstone.entities.Album;
 
@@ -27,27 +29,23 @@ public class GenreController {
 	AlbumService albumService;
 
 	// CREATE Genre ***********************************************
-	@GetMapping("/createGenre")
+	@GetMapping("/admin/createGenre")
 	public String createGenre(Model model) {
 
 
 		Genre newGenre = new Genre();
 		model.addAttribute("genre", newGenre);
 
-		List<Album> allalbums = albumService.findAllAlbums();
-
-		model.addAttribute("allalbums", allalbums);
-
 		return "createGenre";
 	}
 
-	@PostMapping("/newGenre")
-	public String newGenre(@RequestParam("id") Long id, @RequestParam("name") String name,
-			@RequestParam("description") String description, @RequestParam("album") Long albumid, Model model) {
+	@PostMapping("/admin/newGenre")
+	public RedirectView newGenre(@RequestParam("id") Long id, @RequestParam("name") String name,
+			@RequestParam("description") String description, Model model) {
 
-		genreService.createGenre(name, description, albumid);
+		genreService.createGenre(name, description);
 
-		return "redirect:/allGenres";
+		return new RedirectView("/admin/");
 	}
 	
 //	 Display All Genre **********************************
@@ -62,20 +60,23 @@ public class GenreController {
 
 
 	// Delete Genre *************************************************
-	@GetMapping("/deletegenre")
-	public String deletegenre(@RequestParam("Id") long Id, Model model) {
+	@GetMapping("/admin/deletegenre/{id}")
+	public RedirectView deletegenre(@PathVariable long id, Model model) {
 
-		genreService.deleteGenre(Id);
+		if (genreService.deleteGenre(id)) {
+			return new RedirectView("/admin/");
+		}
 
-		return "redirect:/allGenres";
+		//return "redirect:/admin";
+		return new RedirectView("/admin/");
 	}
 
 
 	// Map to Update Genre ***************************************************
-	@GetMapping("/updategenre")
-	public String updategenre(@RequestParam("Id") long Id, Model themodel) {
+	@GetMapping("/admin/updategenre/{id}")
+	public String updategenre(@PathVariable long id, Model themodel) {
 
-		Optional<Genre> genreFromDb = genreService.getGenreById(Id);
+		Optional<Genre> genreFromDb = genreService.getGenreById(id);
 
 		themodel.addAttribute("genre", genreFromDb);
 
@@ -84,13 +85,13 @@ public class GenreController {
 	}
 
 	// Update Genre ***************************************************
-	@PostMapping("/updateGenreinfo")
-	public String updateGenreinfo(@RequestParam("id") Long id, @RequestParam("name") String name,
+	@PostMapping("/admin/updateGenreinfo")
+	public RedirectView updateGenreinfo(@RequestParam("id") Long id, @RequestParam("name") String name,
 			@RequestParam("description") String description, Model model) {
 
 		genreService.updateGenre(id, name, description);
 
-		return "redirect:/allGenres";
+		return new RedirectView("/admin/");
 	}
 
 }
