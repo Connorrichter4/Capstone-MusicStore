@@ -39,7 +39,7 @@ public class UserService {
 		}
 		
 		// set the user role to user by default
-		user.setRole("User");
+		user.setRole("USER");
 
 		return userRepository.save(user);
 	}

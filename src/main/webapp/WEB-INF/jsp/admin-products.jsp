@@ -17,7 +17,10 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<h2>Albums</h2>
+	<div class="d-flex p-2">
+		<h2>Albums</h2>
+		<a href="/admin/album/create"><i class="far fa-plus-square fa-2x"></i></a>
+	</div>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -43,16 +46,19 @@
 					<td>${album.inventory}</td>
 
 
-					<td><a href="/edit-task/${album.id}"><i
-							 class="far fa-edit"></i></a></td>
-					<td><a href="/delete-task/${album.id}"><i
-							 class="fas fa-trash"></i></a></td>
+					 <td><a href="/admin/album/${album.id}"><i
+							class="far fa-edit"></i></a></td>
+					<td><a href="/admin/album/delete/${album.id}"><i
+							class="fas fa-trash"></i></a></td>
 
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	<h2>Songs</h2>
+<div class="d-flex p-2">
+		<h2>Songs</h2>
+		<a href="/admin/song/create"><i class="far fa-plus-square fa-2x"></i></a>
+	</div>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -77,14 +83,44 @@
 					<td>${song.inventory}</td>
 
 
-					<td><a href="/edit-task/${album.id}"><i
-							 class="far fa-edit"></i></a></td>
-					<td><a href="/delete-task/${album.id}"><i
-							 class="fas fa-trash"></i></a></td>
+					<td><a href="/admin/song/${song.id}"><i
+							class="far fa-edit"></i></a></td>
+					<td><a href="/admin/song/delete/${song.id}"><i
+							class="fas fa-trash"></i></a></td>
 
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	<div class="d-flex p-2">
+		<h2>Artists</h2>
+		<a href="/admin/createArtist"><i class="far fa-plus-square fa-2x"></i></a>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Location</th>
+				<!-- <th scope="col"></th> -->
+				<!-- <th scope="col"></th> -->
+				<th scope="col"></th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${artists}" var="artist">
+				<tr>
+					<td>${artist.name}</td>
+					<td>${artist.location}</td>
+
+					<td><a href="/admin/updateartist/${artist.id}"><i
+							class="far fa-edit"></i></a></td>
+					<td><a href="/admin/deleteartist/${artist.id}"><i
+							class="fas fa-trash"></i></a></td>
+
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table> 
 </body>
 </html>

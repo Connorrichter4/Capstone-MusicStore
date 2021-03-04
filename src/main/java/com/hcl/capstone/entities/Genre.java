@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 
 @Entity
 public class Genre {
@@ -17,7 +17,7 @@ public class Genre {
 	private long id;
 	
 	private String name;
-	private String desctiption;
+	private String description;
 	
 	@OneToMany(mappedBy="genre")//added annotation
 	private List<Album> album; // added Album object
@@ -35,15 +35,18 @@ public class Genre {
 	public String getName() {
 		return name;
 	}
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDesctiption() {
-		return desctiption;
-	}
-	public void setDesctiption(String desctiption) {
-		this.desctiption = desctiption;
-	}
+	
 
 	public List<Album> getAlbum() {
 		return album;
@@ -52,5 +55,12 @@ public class Genre {
 	public void setAlbum(List<Album> album) {
 		this.album = album;
 	}
+
+	@Override
+	public String toString() {
+		return "Genre [id=" + id + ", name=" + name + ", description=" + description + ", album=" + album + "]";
+	}
+	
+	
 	
 }

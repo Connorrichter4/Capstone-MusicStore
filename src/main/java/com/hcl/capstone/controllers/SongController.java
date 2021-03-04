@@ -8,14 +8,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.hcl.capstone.entities.Album;
 import com.hcl.capstone.entities.Artist;
-import com.hcl.capstone.entities.Genre;
 import com.hcl.capstone.entities.Song;
+import com.hcl.capstone.services.AlbumService;
+import com.hcl.capstone.services.ArtistService;
 import com.hcl.capstone.services.SongService;
 
 @Controller
@@ -25,6 +31,12 @@ public class SongController {
 	
 	@Autowired
 	SongService songService;
+	
+	@Autowired
+	AlbumService albumService;
+	
+	@Autowired
+	ArtistService artistService;
 	
 	
 	@RequestMapping(value="/testSongController", method=RequestMethod.GET)
@@ -95,15 +107,67 @@ public class SongController {
 		return "testSongController";
 	}
 	
+
+	@GetMapping("admin/song/create")
+	public String createSongForm(ModelMap model) {
+
+		Iterable<Album> albums = albumService.findAllAlbums();
+		Iterable<Artist> artists = artistService.getAllArtist();
+		model.put("albums", albums);
+		model.put("artists", artists);
+		
+		return "admin-create-song";
+	}
+
+	@PostMapping("admin/song/create")
+	public RedirectView createSongProduct(ModelMap model, Song song, @RequestParam Long artist_id,
+			@RequestParam Long album_id) {
+		
+		song.setAlbum(albumService.getAlbumById(album_id).get());
+		song.setArtist(artistService.getArtistById(artist_id).get());
+
+
+		songService.createSong(song);
+		return new RedirectView("/admin/");
+
+	}
 	
-//	  @RequestMapping(value="/addSong", method=RequestMethod.POST)
-//	  String addSongs(@RequestParam String name, @RequestParam Double price,
-//			  @RequestParam Long inventory, Artist artist, Album album) {
-//	  songService.createSong(name, price, inventory, artist, album); 
-//	  return "testSongController"; 
-//	  }
-	 
+	@GetMapping("/admin/song/{id}")
+	public String getSongProduct(ModelMap model, @PathVariable Long id) {
+		Song song = songService.getSongById(id).get();
+		logger.info(song.toString());
+		Iterable<Album> albums = albumService.findAllAlbums();
+		Iterable<Artist> artists = artistService.getAllArtist();
+		model.put("albums", albums);
+		model.put("artists", artists);
+		model.put("song", song);
+		return "admin-edit-song";
+	}
+
+	@PostMapping("/admin/song/{id}")
+	public ModelAndView updateSongProduct(ModelMap model, @PathVariable Long id, Song song,
+			@RequestParam Long artist_id, @RequestParam Long album_id) {
+		song.setAlbum(albumService.getAlbumById(album_id).get());
+		song.setArtist(artistService.getArtistById(artist_id).get());
+
+		logger.info(song.toString());
+		if (songService.updateSong(id, song)) {
+			return new ModelAndView("redirect:/admin/");
+		}
+		model.put("error", "There was an error updating the song");
+		return new ModelAndView("redirect:/admin/song/" + id, model);
+	}
 	
-	
+	@GetMapping("/admin/song/delete/{id}")
+	public RedirectView deleteSongProduct(@PathVariable Long id) {
+		logger.info("inside delete function");
+		
+		// need to add model for delete success and failure
+		
+		if (songService.deleteSong(id)) {
+			return new RedirectView("/admin/");
+		}
+		return new RedirectView("/admin/");
+	}
 
 }

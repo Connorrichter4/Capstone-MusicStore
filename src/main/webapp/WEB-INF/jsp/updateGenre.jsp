@@ -3,6 +3,9 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +20,7 @@
 
 	<div id="wrapper">
 		<div id="header">
-			<h2>Create / Update a Artist:</h2>
+			<h2>Create / Update a Genre:</h2>
 
 
 		</div>
@@ -27,19 +30,21 @@
 	<div id="container">
 		<h3></h3>
 
-		<form:form action="/admin/newArtist" modelAttribute="artist" method="POST">
+		<form:form action="updateGenreinfo" modelAttribute="genre" method="POST">
 			<table>
-			<form:hidden path="id" />
+				<form:hidden path="id" />
 
 				<tr>
-					<td>Artist Name:</td>
+					<td>Genre Name:</td>
 					<td><form:input path="name" /></td>
 				</tr>
 				<tr>
-					<td>Location:</td>
-					<td><form:input path="location" /></td>
+					<td>Genre Description :</td>
+					<td><form:input path="description" /></td>
 				</tr>
-				
+
+			
+
 				<tr>
 					<td colspan="2"><input type="submit" value="Save Changes" />
 					</td>

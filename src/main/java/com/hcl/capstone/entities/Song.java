@@ -63,13 +63,13 @@ public class Song {
 		this.album = album;
 	}
 
-	@Override
-	public String toString() {
-
-		return "Song [id=" + id + ", name=" + name + ", price=" + price + ", inventory=" + inventory +  ", artist id="
-				+ artist.getId() + " artist name=" + artist.getName() + ", album id=" + album.getId() + 
-				", album name=" + album.getName() + ", image=" + album.getImage() +  "]";
-	}
+//	@Override
+//	public String toString() {
+//
+//		return "Song [id=" + id + ", name=" + name + ", price=" + price + ", inventory=" + inventory +  ", artist id="
+//				+ artist.getId() + " artist name=" + artist.getName() + ", album id=" + album.getId() + 
+//				", album name=" + album.getName() + ", image=" + album.getImage() +  "]";
+//	}
 	
 	
 	
