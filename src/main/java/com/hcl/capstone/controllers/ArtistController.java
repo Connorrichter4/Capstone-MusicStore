@@ -7,13 +7,21 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import com.hcl.capstone.entities.Album;
 import com.hcl.capstone.entities.Artist;
+import com.hcl.capstone.entities.Song;
+import com.hcl.capstone.services.AlbumService;
 import com.hcl.capstone.services.ArtistService;
+import com.hcl.capstone.services.SongService;
 
 
 @Controller
@@ -21,9 +29,15 @@ public class ArtistController {
 
 	@Autowired
 	ArtistService artistService;
+	
+	@Autowired
+	AlbumService albumService;
+	
+	@Autowired
+	SongService songService;
 
 	// CREATE ***********************************************
-	@GetMapping("/createArtist")
+	@GetMapping("/admin/createArtist")
 	public String createArtist(Model model) {
 
 		Artist newArtist = new Artist();
@@ -32,11 +46,11 @@ public class ArtistController {
 		return "createArtist";
 	}
 
-	@PostMapping("/newArtist")
+	@PostMapping("/admin/newArtist")
 	public String newArtist(Artist artist, Model model) {
 
 		artistService.save(artist);
-		return "redirect:/allArtists";
+		return "redirect:/admin/";
 	}
 
 	// Display All Artists **********************************
@@ -50,19 +64,20 @@ public class ArtistController {
 	}
 
 	// Delete *************************************************
-	@GetMapping("/deleteartist")
-	public String deleteartist(@RequestParam("Id") long Id, Model model) {
+	@GetMapping("/admin/deleteartist/{id}")
+	public RedirectView deleteartist(@PathVariable Long id) {
 
-		artistService.deleteArtist(Id);
-
-		return "redirect:/allArtists";
+		artistService.deleteArtist(id);
+		
+		return new RedirectView("/admin/");
 	}
 
-	// Update ***************************************************
-	@GetMapping("/updateartist")
-	public String updateartist(@RequestParam("Id") long Id, Model themodel) {
 
-		Optional<Artist> artistFromDb = artistService.getArtistById(Id);
+	// Update ***************************************************
+	@GetMapping("/admin/updateartist/{id}")
+	public String updateartist(@PathVariable Long id, Model themodel) {
+
+		Optional<Artist> artistFromDb = artistService.getArtistById(id);
 
 		themodel.addAttribute("artist", artistFromDb);
 

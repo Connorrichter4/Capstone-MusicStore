@@ -6,6 +6,9 @@ package com.hcl.capstone.services;
 import java.util.List;
 import java.util.Optional;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,37 +20,52 @@ import com.hcl.capstone.repositories.ArtistRepository;
 @Service
 public class ArtistService {
 	
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@Autowired
-	ArtistRepository ArtRepo;
+	ArtistRepository artRepo;
 	
-	Artist artist=new Artist();
+	@Autowired
+	AlbumService albumService;
 	
+	@Autowired
+	SongService songService;
 	
+	/*
+	 * 
+	 * 
+	 * 			Finding Albums   
+	 * 
+	 * 
+	 */
 	
 	public Iterable<Artist> getAllArtist(){
-		return ArtRepo.findAll();
+		return artRepo.findAll();
 	}
 	
 	public Optional<Artist> getArtistById(Long id){
-		return ArtRepo.findById(id);
+		return artRepo.findById(id);
+	}
+	
+	public List<Artist> sortArtistsBySortedName() {
+		return artRepo.findByOrderByName();
 	}
 	
 	
-//	public Artist createArtist(String name,String location,List<Song> songs, List<Album> album) {
-//		artist.setName(name);
-//		artist.setLocation(location);
-//		artist.setSongs(songs);
-//		artist.setAlbum(album);
-//		
-//		return artist;
-//	}
+
+	/*
+	 * 
+	 * 
+	 * 			CRUD Albums   
+	 * 
+	 * 
+	 */
 	
 	
 	public Boolean updateArtist(Long id, String name,String location,List<Song> songs, List<Album> album) {
-		Optional<Artist> foundArtist = ArtRepo.findById(id);
 
-		if(foundArtist.isPresent()) { //CHANGED IT isPresent()
-
+		Optional<Artist> foundArtist = artRepo.findById(id);
+		if(!foundArtist.isPresent()) {
 			return false;
 		}else {
 			Artist updateArtist = foundArtist.get();
@@ -59,16 +77,32 @@ public class ArtistService {
 			return true;
 		}
 		
-		
 	}
 	
 	public Boolean deleteArtist(Long id) {
-		Optional<Artist> foundArtist = ArtRepo.findById(id);
-		if(foundArtist.isPresent()) {
+		Artist foundArtist = artRepo.findById(id).get();
+		if(foundArtist == null) {
 			return false;
 		}else {
 			
-			ArtRepo.deleteById(id);
+			// find and delete all songs
+			Iterable<Song> songs = songService.getSongByArtistName(foundArtist.getName());
+			
+			for(Song song: songs) {
+				logger.info(song.getName());
+				songService.deleteSong(song.getId());
+			}
+			
+			// find and delete all albums
+			
+			List<Album> albums = albumService.getAlbumByArtistName(foundArtist.getName());
+			
+			for(Album album: albums) {
+				logger.info(album.toString());
+				albumService.deleteAlbum(album.getId());
+			}
+			
+			artRepo.deleteById(id);
 			
 			return true;
 		}
@@ -79,16 +113,9 @@ public class ArtistService {
 		
 		System.out.println("should be saved now");
 		
-		ArtRepo.save( artist2);
+		artRepo.save( artist2);
 		
 	}
-
-
-	
-	
-	
-	
-	
 
 }
 

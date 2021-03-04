@@ -1,0 +1,390 @@
+[33mcommit 4dcefc0dc68e88dcc258d521f9a9aae0c64044b7[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: c543af5 b803f86
+Author: nhcl <76067273+nhcl@users.noreply.github.com>
+Date:   Tue Mar 2 13:15:00 2021 -0800
+
+    Merge pull request #7 from Connorrichter4/song
+    
+    Improved Song controller service repo JSP
+
+[33mcommit b803f8652a9950e394743464b370331be21f472c[m[33m ([m[1;31morigin/song[m[33m)[m
+Author: Narges Goshayeshisafa <narges.gosha@hcl.com>
+Date:   Tue Mar 2 12:56:12 2021 -0800
+
+    Improved Song controller service repo JSP
+
+[33mcommit c543af529857dd77be98f0c3249d4423b477d06d[m
+Merge: edac493 4107686
+Author: Mustafa Alhilo <66330708+AlhiloMustafa@users.noreply.github.com>
+Date:   Tue Mar 2 14:17:36 2021 -0600
+
+    Merge pull request #6 from Connorrichter4/artist
+    
+    artist completed
+
+[33mcommit 410768669e31863ff64dfbbc756c099672632f98[m[33m ([m[1;31morigin/artist[m[33m, [m[1;32martist[m[33m)[m
+Author: Mustafa Alhilo <mustafa.a.alhilo@gmail.com>
+Date:   Tue Mar 2 14:14:27 2021 -0600
+
+    artist completed
+
+[33mcommit edac49386c881963298ddce10eb57abfe5d54c8c[m[33m ([m[1;31morigin/album[m[33m)[m
+Merge: eda7813 f885d15
+Author: Connor Richter <Connorrichter4@gmail.com>
+Date:   Tue Mar 2 10:24:38 2021 -0600
+
+    Merge pull request #5 from Connorrichter4/artist
+    
+    create jsps, artist service, some changes in artist entity
+
+[33mcommit f885d15b8c7dbf762abe9dff2d019bbad42ebe7b[m
+Merge: 05c9a67 eda7813
+Author: Connor Richter <Connorrichter4@gmail.com>
+Date:   Tue Mar 2 10:24:30 2021 -0600
+
+    Merge branch 'master' into artist
+
+[33mcommit eda7813e213e5e68186b9e2713cc4ccfdafd438d[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Tue Mar 2 10:12:04 2021 -0600
+
+    updated artist entity
+
+[33mcommit 65d45a3cdad1023601701886be020df51d5e54a8[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Tue Mar 2 10:10:59 2021 -0600
+
+    updated User Controller and data.sql
+
+[33mcommit 05c9a6760759c1e3be7d354091a620abdccb0780[m
+Author: Mustafa Alhilo <mustafa.a.alhilo@gmail.com>
+Date:   Tue Mar 2 09:51:53 2021 -0600
+
+    create jsps, artist service, some changes in artist antity
+
+[33mcommit ca2fccc4e5f460befe48f35bd57a89989453cb79[m
+Author: Connor Richter <Connorrichter4@gmail.com>
+Date:   Tue Mar 2 09:14:06 2021 -0600
+
+    added er diagram to readme.md
+
+[33mcommit 143c8d7cb600ffbdd06c2fb575b2bdb653759961[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 21:43:24 2021 -0600
+
+    fixed bug not allowing songs to show correctly
+
+[33mcommit 6fa66c67e2f09b9a60327651d186c267865903de[m
+Merge: 525f75d 69643b9
+Author: Connor Richter <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 17:30:13 2021 -0600
+
+    Merge pull request #4 from Connorrichter4/album
+    
+    Album
+
+[33mcommit 69643b98e462c84c64a624002cabe0b06d058995[m
+Merge: 879d5ee 525f75d
+Author: Connor Richter <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 17:30:05 2021 -0600
+
+    Merge branch 'master' into album
+
+[33mcommit 525f75dc37975eb898c5104446ffef53b50c21ee[m
+Merge: e05a21c 8e7c02f
+Author: Connor Richter <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 17:25:53 2021 -0600
+
+    Merge pull request #3 from Connorrichter4/user
+    
+    User
+
+[33mcommit 8e7c02fcf97fbdc2a048f2f393cf91828db8ba38[m
+Merge: b915a43 e05a21c
+Author: Connor Richter <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 17:25:42 2021 -0600
+
+    Merge branch 'master' into user
+
+[33mcommit 879d5ee383319800dc07633ad00472acd8c99249[m
+Merge: 443ca07 4032c77
+Author: NYoung214 <74738889+NYoung214@users.noreply.github.com>
+Date:   Mon Mar 1 17:23:47 2021 -0600
+
+    Merge branch 'album' of https://github.com/Connorrichter4/Capstone-MusicStore into album
+
+[33mcommit 443ca07b057807d553a25f9266c9f6f34cbae725[m
+Author: NYoung214 <74738889+NYoung214@users.noreply.github.com>
+Date:   Mon Mar 1 17:23:38 2021 -0600
+
+    JSP can display data from database
+
+[33mcommit e05a21c8608c28cf42d6adce69513b11376eca68[m
+Merge: 4032c77 e81fb39
+Author: Connor Richter <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 17:18:19 2021 -0600
+
+    Merge pull request #2 from Connorrichter4/song
+    
+    Improved Song controller service repo test-JSP
+
+[33mcommit b915a431d41c21d9055c1ba1ff47a6b179ab9df5[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 17:16:05 2021 -0600
+
+    added update user on admin controller
+
+[33mcommit e81fb3962fa3c3ebc793a903c05e0d6c27ca99ce[m
+Author: Narges Goshayeshisafa <narges.gosha@hcl.com>
+Date:   Mon Mar 1 15:10:23 2021 -0800
+
+    Improved Song controller service repo test-JSP
+
+[33mcommit 8ea1cfa03eb3bf6ccd4c31dba8da8595c2420a3d[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 16:59:26 2021 -0600
+
+    updated admin controller
+
+[33mcommit 645bbb66506ab3187bf5e93cdbe33367ade90342[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 16:49:12 2021 -0600
+
+    updating AdminController, user service, and data.sql
+
+[33mcommit 8daa49cb6f788b1a46452ac7e4ff738eddcd2392[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 16:05:45 2021 -0600
+
+    updated song service, user service, and user controller. Started working on admin controller
+
+[33mcommit 054a08762e4b5cfb12c958a508c3bf801804e927[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 14:04:17 2021 -0600
+
+    temporarily fixed song service
+
+[33mcommit a6d777c0df0a8926ec74276d34e584ec28190ff8[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 12:44:36 2021 -0600
+
+    added update user service
+
+[33mcommit 9a330932387a6a7dfffa359094d5b91d6ca084e1[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 12:26:41 2021 -0600
+
+    changed user entity id to IDENTITY
+
+[33mcommit 4032c772c508697c49e1ae0d33a8a9b259544902[m
+Merge: 332255d 776b93a
+Author: Narges Goshayeshisafa <narges.gosha@hcl.com>
+Date:   Mon Mar 1 10:01:32 2021 -0800
+
+    Merge branch 'master' of github.com:Connorrichter4/Capstone-MusicStore into master
+
+[33mcommit 332255df9b12b949aae36d730f81f873a22788a7[m
+Merge: b792aaf 7bd9605
+Author: Narges Goshayeshisafa <narges.gosha@hcl.com>
+Date:   Mon Mar 1 09:59:40 2021 -0800
+
+    Merge branch 'song' into master
+
+[33mcommit 7bd9605aa1bce60f5d9239b133b54d5d99539026[m
+Author: Narges Goshayeshisafa <narges.gosha@hcl.com>
+Date:   Mon Mar 1 09:58:50 2021 -0800
+
+    added song controller repo service
+
+[33mcommit 776b93a4332b07c3067e57b4bd8ab53a78991b30[m
+Merge: 9b71d50 8c74ebe
+Author: Mustafa Alhilo <mustafa.a.alhilo@gmail.com>
+Date:   Mon Mar 1 11:58:03 2021 -0600
+
+    Merge branch 'artist'
+
+[33mcommit 8c74ebeace1c76fa0eb226a9e59b3a594b1179bb[m
+Author: Mustafa Alhilo <mustafa.a.alhilo@gmail.com>
+Date:   Mon Mar 1 11:56:09 2021 -0600
+
+     added artistRep, genraRep
+
+[33mcommit 9b71d509b804f8cda565b4167470b0699f24d9a0[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 11:53:15 2021 -0600
+
+    updated userservice
+
+[33mcommit a04e011e57e281d56fcaee33200051c4cb81fc79[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 11:17:41 2021 -0600
+
+    added userController, userRepository, and UserService, updated User to have Long Id
+
+[33mcommit 159feab20fa4b9d9cc70fe30bb1868240986e845[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 10:22:44 2021 -0600
+
+    added controller annotation to user controller
+
+[33mcommit b792aafd69f0b6d765cecac2ae320098e474ee94[m
+Merge: ff376dd 9e8b6f7
+Author: NYoung214 <74738889+NYoung214@users.noreply.github.com>
+Date:   Mon Mar 1 11:50:45 2021 -0600
+
+    Merge pull request #1 from Connorrichter4/album
+    
+    Changes to make application run
+
+[33mcommit 9e8b6f782b9918eb91e066f5d3fe790041e30552[m
+Author: NYoung214 <74738889+NYoung214@users.noreply.github.com>
+Date:   Mon Mar 1 11:49:21 2021 -0600
+
+    Changes to make application run
+
+[33mcommit ff376dd1b77cf0847e5d9d2b005b219f28c50bca[m
+Author: NYoung214 <74738889+NYoung214@users.noreply.github.com>
+Date:   Mon Mar 1 10:20:18 2021 -0600
+
+    Changed Song to a list
+
+[33mcommit 8133d776559051ffea3cefa5070497221fb8381d[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 09:39:52 2021 -0600
+
+    added packages for controllers and repositories, and added webapp folder
+
+[33mcommit f7635b6c447bd1132003d728b313fdf7eba78229[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 09:27:48 2021 -0600
+
+    added Services package and UserService file
+
+[33mcommit 876e689fc26702be82f0df256a2913a6e404d127[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Mon Mar 1 09:25:51 2021 -0600
+
+    updated readme entities
+
+[33mcommit 62ff330f85527527a7c3bdaf9a9fb523f1e64073[m
+Author: Mustafa Alhilo <mustafa.a.alhilo@gmail.com>
+Date:   Sun Feb 28 19:24:58 2021 -0600
+
+    add toString to song
+
+[33mcommit b376a850123ac5c284581d06cab10617139ea20f[m
+Author: Narges Goshayeshisafa <narges.gosha@hcl.com>
+Date:   Sun Feb 28 17:15:30 2021 -0800
+
+    Price is BigDecimal
+
+[33mcommit 0a911f6f91f3dada4cffd9caac34f32a27997267[m
+Merge: 0ce597d 77c3a77
+Author: Narges Goshayeshisafa <narges.gosha@hcl.com>
+Date:   Sun Feb 28 17:13:22 2021 -0800
+
+    Merge branch 'master' of github.com:Connorrichter4/Capstone-MusicStore into master
+
+[33mcommit 0ce597da6253c4bcdad1e9aa2caf155831719300[m
+Merge: 14b18e5 dafe61c
+Author: Narges Goshayeshisafa <narges.gosha@hcl.com>
+Date:   Sun Feb 28 17:13:10 2021 -0800
+
+    Added Album Artist Song
+
+[33mcommit 77c3a777d1a7737dff473563974c4a37f88ccd71[m
+Author: NYoung214 <74738889+NYoung214@users.noreply.github.com>
+Date:   Sun Feb 28 19:07:48 2021 -0600
+
+    removed bin folder
+
+[33mcommit 14b18e5ab120b10f0a058e494b99e207a46450ee[m
+Author: Narges Goshayeshisafa <narges.gosha@hcl.com>
+Date:   Sun Feb 28 17:02:27 2021 -0800
+
+    Added Artist Entity
+
+[33mcommit dafe61ce76141e01ea5cd138f35687e16a44fe3e[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Sun Feb 28 19:00:15 2021 -0600
+
+    changed .gitignore to include bin folder
+
+[33mcommit 0489576c86fba1625d3bcd7006eee2fa6458f981[m
+Author: NYoung214 <74738889+NYoung214@users.noreply.github.com>
+Date:   Sun Feb 28 18:59:45 2021 -0600
+
+    Deleted extra album/entity package
+
+[33mcommit 4af5b040af7d66bd111401f1d71f233877ef572b[m
+Merge: 19af1ca 09beb35
+Author: NYoung214 <74738889+NYoung214@users.noreply.github.com>
+Date:   Sun Feb 28 18:57:22 2021 -0600
+
+    Merge branch 'master' of https://github.com/Connorrichter4/Capstone-MusicStore
+
+[33mcommit 19af1ca00a14da1d28234adc8cfe8fc0653987a7[m
+Author: NYoung214 <74738889+NYoung214@users.noreply.github.com>
+Date:   Sun Feb 28 18:57:16 2021 -0600
+
+    Added Album entity
+
+[33mcommit 09beb35936a511059b878cd6756e436b7ad90091[m
+Author: Narges Goshayeshisafa <narges.gosha@hcl.com>
+Date:   Sun Feb 28 16:53:10 2021 -0800
+
+    Added Genre and Song Entities
+
+[33mcommit be955d6ebb754c0fb9af26a6e60a17634a7ca9f4[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Sun Feb 28 18:44:01 2021 -0600
+
+    added data.sql file
+
+[33mcommit 6e98de1d69c9762be072371740fe7596b3a99779[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Sun Feb 28 18:31:38 2021 -0600
+
+    added entities
+
+[33mcommit afa13a06ca5bbf5ff046c4c2d726760d556bfbe1[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Sun Feb 28 18:19:29 2021 -0600
+
+    updated pages required in README.md
+
+[33mcommit e7c42cda5ed07b0c999a822278cee2834ca7d62e[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Sun Feb 28 18:10:52 2021 -0600
+
+    updated pom and application.properties
+
+[33mcommit 105ef1764ec057f67a245e30b38f1034d89c2452[m
+Author: Connorrichter4 <Connorrichter4@gmail.com>
+Date:   Sun Feb 28 18:07:14 2021 -0600
+
+    updated pom file
+
+[33mcommit acb161813dd113cee3ff2f474729af5ae51e1e35[m
+Author: Connor Richter <Connorrichter4@gmail.com>
+Date:   Fri Feb 26 17:56:19 2021 -0600
+
+    updated README.md
+
+[33mcommit efa295f2d87e76ab0686fc654cabe40d33997229[m
+Author: Connor Richter <Connorrichter4@gmail.com>
+Date:   Fri Feb 26 17:47:47 2021 -0600
+
+    added paths
+
+[33mcommit d9fea65215868d319296103777e895f0e5f9ca9b[m
+Author: Connor Richter <Connorrichter4@gmail.com>
+Date:   Fri Feb 26 17:37:50 2021 -0600
+
+    added Readme file with attributes
+
+[33mcommit 571ad77162eac0141cb937fa0989967975d3048d[m
+Author: Connor Richter <Connorrichter4@gmail.com>
+Date:   Fri Feb 26 16:48:52 2021 -0600
+
+    initialized git repository
