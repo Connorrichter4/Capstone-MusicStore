@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,16 +43,49 @@ public class AdminController {
 
 	@Autowired
 	ArtistService artistService;
-	
 
 
 	@GetMapping("/")
 	public String showProducts(ModelMap model) {
-		Iterable<Song> songs = songService.sortSongsBySortedName();
-		Iterable<Album> albums = albumService.findAllAlbums();
-		model.put("songs", songs);
-		model.put("albums", albums);
+		
+		System.out.println(model);
+//		model.remove("albums");
+//		System.out.println(model);
+
+		logger.info("inside show admin home");
+		Iterable<Album> albums = albumService.getAllAlbum();
+//		
+//		for(Album album : albums) {
+//			logger.info(album.toString());
+//		}
+		
+		Iterable<Artist> artists = artistService.getAllArtist();
+		Iterable<Song> songs = songService.getAllSong();
+		model.addAttribute("albums", albums);
+		model.addAttribute("artists", artists);
+		model.addAttribute("songs", songs);
+		
+//		System.out.println(model.get("albums"));
+//		model.remove("albums");
+//		System.out.println(model.get("albums"));
+		
 		return "admin-products";
+	}
+	
+	@GetMapping("/songs")
+	public String showSongProducts(ModelMap model) {	
+	
+		Iterable<Song> songs = songService.getAllSong();
+		model.addAttribute("songs", songs);
+		return "admin-songs";
+	}
+	
+	@GetMapping("/artist")
+	public String showArtists(ModelMap model) {	
+	
+		Iterable<Artist> artists = artistService.getAllArtist();
+		model.addAttribute("artists", artists);
+		return "admin-artists";
 	}
 	
 	/*
@@ -63,68 +97,68 @@ public class AdminController {
 	 * 
 	 * 
 	 */
+//
+//	@GetMapping("/song/create")
+//	public String createSongForm(ModelMap model) {
+//
+//		Iterable<Album> albums = albumService.findAllAlbums();
+//		Iterable<Artist> artists = artistService.getAllArtist();
+//		model.put("albums", albums);
+//		model.put("artists", artists);
+//		
+//		return "admin-create-song";
+//	}
+//
+//	@PostMapping("/song/create")
+//	public RedirectView createSongProduct(ModelMap model, Song song, @RequestParam Long artist_id,
+//			@RequestParam Long album_id) {
+//		song.setAlbum(albumService.findAlbum(album_id));
+//		song.setArtist(artistService.getArtistById(artist_id).get());
+//
+//		logger.info(song.toString());
+//
+//		songService.createSong(song);
+//		return new RedirectView("/admin/");
 
-	@GetMapping("/song/create")
-	public String createSongForm(ModelMap model) {
+//	}
 
-		Iterable<Album> albums = albumService.findAllAlbums();
-		Iterable<Artist> artists = artistService.getAllArtist();
-		model.put("albums", albums);
-		model.put("artists", artists);
-		
-		return "admin-create-song";
-	}
+//	@GetMapping("/song/{id}")
+//	public String getSongProduct(ModelMap model, @PathVariable Long id) {
+//		Song song = songService.getSongById(id).get();
+//		logger.info(song.toString());
+//		Iterable<Album> albums = albumService.findAllAlbums();
+//		Iterable<Artist> artists = artistService.getAllArtist();
+//		model.put("albums", albums);
+//		model.put("artists", artists);
+//		model.put("song", song);
+//		return "admin-edit-song";
+//	}
+//
+//	@PostMapping("/song/{id}")
+//	public ModelAndView updateSongProduct(ModelMap model, @PathVariable Long id, Song song,
+//			@RequestParam Long artist_id, @RequestParam Long album_id) {
+//		song.setAlbum(albumService.findAlbum(album_id));
+//		song.setArtist(artistService.getArtistById(artist_id).get());
+//
+//		logger.info(song.toString());
+//		if (songService.updateSong(id, song)) {
+//			return new ModelAndView("redirect:/admin/");
+//		}
+//		model.put("error", "There was an error updating the song");
+//		return new ModelAndView("redirect:/admin/song/" + id, model);
+//	}
 
-	@PostMapping("/song/create")
-	public RedirectView createSongProduct(ModelMap model, Song song, @RequestParam Long artist_id,
-			@RequestParam Long album_id) {
-		song.setAlbum(albumService.findAlbum(album_id));
-		song.setArtist(artistService.getArtistById(artist_id).get());
-
-		logger.info(song.toString());
-
-		songService.createSong(song);
-		return new RedirectView("/admin/");
-
-	}
-
-	@GetMapping("/song/{id}")
-	public String getSongProduct(ModelMap model, @PathVariable Long id) {
-		Song song = songService.getSongById(id).get();
-		logger.info(song.toString());
-		Iterable<Album> albums = albumService.findAllAlbums();
-		Iterable<Artist> artists = artistService.getAllArtist();
-		model.put("albums", albums);
-		model.put("artists", artists);
-		model.put("song", song);
-		return "admin-edit-song";
-	}
-
-	@PostMapping("/song/{id}")
-	public ModelAndView updateSongProduct(ModelMap model, @PathVariable Long id, Song song,
-			@RequestParam Long artist_id, @RequestParam Long album_id) {
-		song.setAlbum(albumService.findAlbum(album_id));
-		song.setArtist(artistService.getArtistById(artist_id).get());
-
-		logger.info(song.toString());
-		if (songService.updateSong(id, song)) {
-			return new ModelAndView("redirect:/admin/");
-		}
-		model.put("error", "There was an error updating the song");
-		return new ModelAndView("redirect:/admin/song/" + id, model);
-	}
-
-	@GetMapping("/song/delete/{id}")
-	public RedirectView deleteSongProduct(@PathVariable Long id) {
-		logger.info("inside delete function");
-		
-		// need to add model for delete success and failure
-		
-		if (songService.deleteSong(id)) {
-			return new RedirectView("/admin/");
-		}
-		return new RedirectView("/admin/");
-	}
+//	@GetMapping("/song/delete/{id}")
+//	public RedirectView deleteSongProduct(@PathVariable Long id) {
+//		logger.info("inside delete function");
+//		
+//		// need to add model for delete success and failure
+//		
+//		if (songService.deleteSong(id)) {
+//			return new RedirectView("/admin/");
+//		}
+//		return new RedirectView("/admin/");
+//	}
 	
 	/*
 	 * 
@@ -162,7 +196,7 @@ public class AdminController {
 	@GetMapping("/album/{id}")
 	public String getAlbumProduct(ModelMap model, @PathVariable Long id) {
 		
-		Album album = albumService.findAlbum(id);
+		Album album = albumService.getAlbumById(id).get();
 		logger.info(album.toString());
 		
 		Iterable<Artist> artists = artistService.getAllArtist();
@@ -196,7 +230,7 @@ public class AdminController {
 		
 		// need to add model for delete success and failure
 		
-		if (albumService.deleteSong(id)) {
+		if (albumService.deleteAlbum(id)) {
 			return new RedirectView("/admin/");
 		}
 		return new RedirectView("/admin/");

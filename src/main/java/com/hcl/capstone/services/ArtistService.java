@@ -6,8 +6,8 @@ package com.hcl.capstone.services;
 import java.util.List;
 import java.util.Optional;
 
-
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +20,16 @@ import com.hcl.capstone.repositories.ArtistRepository;
 @Service
 public class ArtistService {
 	
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@Autowired
 	ArtistRepository ArtRepo;
+	
+	@Autowired
+	AlbumService albumService;
+	
+	@Autowired
+	SongService songService;
 	
 	Artist artist=new Artist();
 	
@@ -60,14 +68,33 @@ public class ArtistService {
 			return true;
 		}
 		
-		
 	}
 	
 	public Boolean deleteArtist(Long id) {
-		Optional<Artist> foundArtist = ArtRepo.findById(id);
-		if(!foundArtist.isPresent()) {
+		
+		Artist foundArtist = ArtRepo.findById(id).get();
+		
+		
+		if(foundArtist == null) {
 			return false;
 		}else {
+			
+			// find and delete all songs
+			Iterable<Song> songs = songService.getSongByArtistName(foundArtist.getName());
+			
+			for(Song song: songs) {
+				logger.info(song.getName());
+				songService.deleteSong(song.getId());
+			}
+			
+			// find and delete all albums
+			
+			List<Album> albums = albumService.getSongByArtistName(foundArtist.getName());
+			
+			for(Album album: albums) {
+				logger.info(album.toString());
+				albumService.deleteAlbum(album.getId());
+			}
 			
 			ArtRepo.deleteById(id);
 			

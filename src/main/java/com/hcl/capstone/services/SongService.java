@@ -52,17 +52,7 @@ public class SongService {
 		return songRepository.findByArtistName(artist);
 	}
 	 
-	
-//	public Song createSong(String name, Double price, Long inventory, Artist artist, Album album) {
-//		Song song = new Song();
-//		song.setName(name);
-//		song.setPrice(price);
-//		song.setInventory(inventory);
-//		song.setAlbum(album);
-//		song.setAlbum(album);
-//		return songRepository.save(song);
-//	}
-	
+		
 	public Song createSong(Song song) {
 		return songRepository.save(song);
 	}

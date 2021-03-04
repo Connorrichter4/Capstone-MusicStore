@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hcl.capstone.entities.Album;
+import com.hcl.capstone.entities.Artist;
 import com.hcl.capstone.entities.Song;
 import com.hcl.capstone.repositories.AlbumRepository;
 
@@ -17,42 +18,61 @@ import com.hcl.capstone.repositories.AlbumRepository;
 public class AlbumService {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
-	
+
 	@Autowired
 	AlbumRepository repo;
-	
+
+	@Autowired
+	SongService songService;
+
 	public List<Album> findAllAlbums() {
 		List<Album> albums = new ArrayList<Album>();
-		for(Album album : repo.findAll()) {
+		for (Album album : repo.findAll()) {
 			logger.info("found an album...");
 			albums.add(album);
 		}
 		return albums;
 	}
-	
-	public Album findAlbum(Long id) {
-//		if(repo.existsById(id)) {
-//			logger.info("found the album...");
-//			return repo.findById(id).get();
-//		}else {
-//			logger.info("album not found...");
-//			return new Album(); //return empty album if nor found
-//		}
-		
-		return repo.findById(id).get();
+
+	public List<Album> sortAlbumsBySortedName() {
+		return repo.findByOrderByName();
 	}
-	
+
+	public Iterable<Album> getAllAlbum() {
+		logger.info("inside getallalbum **************************");
+		return repo.findAll();
+	}
+
+	public List<Album> getSongByArtistName(String artist) {
+		return repo.findByArtistName(artist);
+	}
+
+	public Album findAlbum(Long id) {
+		if (repo.existsById(id)) {
+			logger.info("found the album...");
+			return repo.findById(id).get();
+		} else {
+			logger.info("album not found...");
+			return null; // return empty album if nor found
+		}
+
+	}
+
+	public Optional<Album> getAlbumById(Long id) {
+		return repo.findById(id);
+	}
+
 	public Album createAlbum(Album album) {
 		return repo.save(album);
 	}
-	
+
 	public Boolean updateAlbum(Long id, Album album) {
-		Album oldAlbum = findAlbum(id);
-		if(oldAlbum == null) {
-			//throw new SongNotFoundException(id);
+		Album oldAlbum = getAlbumById(id).get();
+		if (oldAlbum == null) {
+			// throw new SongNotFoundException(id);
 			return false;
-		}else {
-			
+		} else {
+
 			oldAlbum.setName(album.getName());
 			oldAlbum.setPrice(album.getPrice());
 			oldAlbum.setInventory(album.getInventory());
@@ -64,17 +84,28 @@ public class AlbumService {
 			return true;
 		}
 	}
-	
-	public Boolean deleteSong(Long id) {
-		Album album = findAlbum(id);
-		if(album == null) {
-			//throw new SongNotFoundException(id);
+
+	public Boolean deleteAlbum(Long id) {
+		Optional<Album> album = getAlbumById(id);
+		logger.info("inside delete album");
+		if (!album.isPresent()) {
+			logger.info("album is not present ************************************");
+			// throw new SongNotFoundException(id);
 			return false;
-		}else {
-			repo.delete(album);
+		} else {
+
+			// find and delete all songs
+			Iterable<Song> songs = songService.getSongByAlbumName(album.get().getName());
+
+			for (Song song : songs) {
+				logger.info(song.getName());
+				songService.deleteSong(song.getId());
+			}
+
+			repo.delete(album.get());
 			return true;
 		}
-		
+
 	}
-	
+
 }
