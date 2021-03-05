@@ -1,30 +1,32 @@
-# Music Store
+# Music Store Capstone Project
 
-### To Do List
+## Background
 
-- Finish merging admin controller into other controllers
-- incorporate genre controller with album, song controllers
-- Shopping Cart:
+- An online product catalog that can be browsed: The work starts with adding many new product catalog features which includes displaying categories, products, and product details.
 
-  - create a shopping cart entity
-  - create shopping cart controller
+- Searching the Catalog: For the visual part, a text box is used in which the visitor can enter one or more words to search through the product catalog. In Music CD Shop,the words entered by the visitor are searched for in the products’ names and descriptions. Also, the user can search for a particular song by entering the title, artist,style, format and the price range.
 
-- Spring Security:
+- A Custom Shopping Cart and checkout: A custom shopping basket is implemented, which stores its data into the local database. Also a “shopping cart summary control” is created that shows up in every catalog page except the shopping cart page.
 
-  - create userdetailsimpl
-  - create web config file
-  - encode user passwords
+- Handling Customer Accounts: In customer account system, details such as credit card numbers are stored in a database so that customers don’t have to retype this information each time they place an order. Customers can log in via a login page or dialog box to get access to secured areas of the web site. Once logged in, the WebApplication remembers the customer until the customer logs out (either manually via a Log Out button or automatically, if the session times out ora server error occurs).All secure pages in a Web Application need to check whether a customer is logged in before allowing access.
 
-- jsps: ( to finalize )
-  - shopping cart jsp
-  - home page jsp
-  - admin home jsp
-  - create song jsp
-  - edit song jsp
-  - create album jsp
-  - edit album jsp
-  - create / edit artist jsp
-  - create / edit genre jsp
+- Catalog Administration: This administrative interface is implemented for easy management of the web store data. The catalog administration page allows the administrator to:
+  - Add or remove genres, and update the details of existing genres
+  - View and manage the categories that belong to a genre• Manage the list of products in a specific category, and edit product details
+  - Assign an existing product to an additional, or move it to another category
+  - Remove a product from a category or delete the product from the catalog• Manage orders by updating their status
+
+### Recommended technologies:
+
+- Spring boot
+- Java 8
+- MySQL database
+- Spring Data JPA
+- JSP
+- Servlets
+- Bootstrap
+
+## Planning
 
 ### Entities & Attributes
 
@@ -84,28 +86,40 @@
   - albums (id)
   - user (id)
 
-### Pages
+## Examples
 
-Seed admin data
+### Login Page
 
-- permit all
+![login](https://user-images.githubusercontent.com/58124052/110174881-74b5cc00-7dc6-11eb-8278-6ccdb432470f.png)
 
-  - /login
-  - /signup
-  - /home (show all albums)
-  - /album/:id (show all songs in album)
-  - /songs (show all songs)
+### Sign Up Page
 
-- authenticate
+![signup](https://user-images.githubusercontent.com/58124052/110174884-75e6f900-7dc6-11eb-9a41-4d98d4515daa.png)
 
-  - /checkout
+### Home Page
 
-- authorization
-  - /admin/products
-  - /admin/product/edit/:id
-  - /admin/product/create
-  - /admin/product/delete/:id
-  - /admin/customers
-  - /admin/customers/edit/:id
-  - /admin/customers/create
-  - /admin/customers/delete/:id
+### Album Id Page
+
+### Song Id Page
+
+### Artist Id Page
+
+### Search Results
+
+### Shopping Cart Page
+
+### Completed Checkout Page
+
+### Admin Home Page
+
+### Admin Album Create
+
+### Admin Artist Create
+
+### Admin Song Edit
+
+### Admin Genre Edit
+
+### Admin Customer Page
+
+### Admin Customer Edit
