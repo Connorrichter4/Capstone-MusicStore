@@ -95,7 +95,7 @@
 			<!-- 			START SEARCH BAR -->
 			<div class="container row mt-3">
 			
-				<form action="/search" method="post">
+				<form:form action="/search" method="post">
 					<div class="form-row">
 						<div class="form-row justify-content-center">
 							<input class=" col-md-11 " type="search" name="generalSearch" placeholder="Search">
@@ -124,7 +124,7 @@
 						</div>					
 					</div>	
 					<button class="form-control btn btn-success" type="submit" name="search-btn">Search</button>					
-				</form>
+				</form:form>
 			</div>
 			<!-- 			END SEARCH BAR -->
 			
