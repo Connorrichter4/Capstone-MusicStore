@@ -41,6 +41,10 @@ public class UserInitializer {
 		
 		user.setEmail("user@user.com");
 		user.setPassword("password");
+		user.setAddress("1234 Apple St");
+		user.setCity("New York");
+		user.setName("user");
+		user.setState("NY");
 		userService.createUser(user);
 		
 		

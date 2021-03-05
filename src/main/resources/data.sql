@@ -105,9 +105,9 @@ insert into song(id,inventory,name,price,album_id,artist_id) values (40,51,'SONG
 --insert into album (id, name, price, date, image, inventory, status,artist_id,genre_id)  values(9,'THE FINAL ALBUM',19.99,'2021-05-05','img/final.png',3,'USED',2,null);
 --
 --
---insert into shopping_cart (id, album_id, song_id, user_id ) values (1, 2, null, 1);
---insert into shopping_cart (id, album_id, song_id, user_id ) values (2, null, 3, 1);
---insert into shopping_cart (id, album_id, song_id, user_id ) values (3, 7, null, 2);
---insert into shopping_cart (id, album_id, song_id, user_id ) values (4, 7, null, 1);
+insert into shopping_cart (id, album_id, song_id, user_id ) values (1, 2, null, 2);
+insert into shopping_cart (id, album_id, song_id, user_id ) values (2, null, 3, 2);
+insert into shopping_cart (id, album_id, song_id, user_id ) values (3, 7, null, 2);
+insert into shopping_cart (id, album_id, song_id, user_id ) values (4, 7, null, 2);
 
 
