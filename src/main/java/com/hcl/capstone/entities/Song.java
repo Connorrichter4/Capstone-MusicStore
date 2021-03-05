@@ -1,5 +1,7 @@
 package com.hcl.capstone.entities;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +18,7 @@ public class Song {
 	private long id;
 	
 	private String name;
-	private Double price;
+	private BigDecimal price;
 	private Long inventory;
 	
 	@ManyToOne
@@ -41,10 +43,10 @@ public class Song {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
-	public void setPrice(Double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 	public Long getInventory() {

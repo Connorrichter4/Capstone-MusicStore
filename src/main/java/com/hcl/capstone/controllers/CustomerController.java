@@ -1,5 +1,6 @@
 package com.hcl.capstone.controllers;
 
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,9 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hcl.capstone.entities.Role;
 import com.hcl.capstone.entities.User;
+import com.hcl.capstone.repositories.RoleRepository;
 import com.hcl.capstone.services.UserService;
 
 @Controller
@@ -36,13 +40,16 @@ public class CustomerController {
 	@GetMapping("/customer/{id}")
 	public String getCustomer(ModelMap model, @PathVariable Long id) {
 		User user = userService.getUserById(id);
+		
+		
 		logger.info(user.toString());
 		model.put("user", user);
+		
 		return "admin-edit-customer";
 	}
 
 	@PostMapping("/customer/{id}")
-	public ModelAndView updateCustomer(ModelMap model, @PathVariable Long id, User user) {
+	public ModelAndView updateCustomer(ModelMap model, @PathVariable Long id, User user, @RequestParam Long role_id) {
 		user.setId(id);
 		// verify valid email using regex
 		Pattern pattern = Pattern.compile(
@@ -55,7 +62,7 @@ public class CustomerController {
 			return new ModelAndView("admin-edit-customer", model);
 		}
 
-		userService.updateUser(user);
+		userService.updateUserAdmin(user, role_id);
 		return new ModelAndView("redirect:/admin/customers");
 	}
 

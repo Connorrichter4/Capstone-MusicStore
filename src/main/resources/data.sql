@@ -1,5 +1,11 @@
-insert into user (email, password, address, state, zipcode, credit_card, role) values ('user@user.com','password', '1234 apple st', 'NY', '12345', '123456789', 'ADMIN');
-insert into user (email, password, address, state, zipcode, credit_card, role) values ('test@test.com','password', '1234 apple st', 'NY', '12345', '123456789', 'ADMIN');
+insert into user (email,name, city, password, address, state, zipcode, credit_card) values ('user@user.com','user','new york' ,'password', '1234 apple st', 'NY', '12345', '123456789');
+insert into user (email,name, city, password, address, state, zipcode, credit_card) values ('test@test.com', 'test', 'dallas','password', '1234 apple st', 'NY', '12345', '123456789');
+
+insert into role (id, name) values (1, 'ROLE_ADMIN');
+insert into role (id, name) values (2, 'ROLE_USER');
+
+--insert into user_role (user_id, role_id) values (3,1);
+--insert into user_role (user_id, role_id) values (3,2);
 
 
 --insert into artist (id,location,name) values (1,'Korea','BLACKPINK');
@@ -101,6 +107,9 @@ insert into album (id, name, price, date, image, inventory, status,artist_id,gen
 insert into album (id, name, price, date, image, inventory, status,artist_id,genre_id)  values(9,'THE FINAL ALBUM',19.99,'2021-05-05','img/final.png',3,'USED',2,null);
 
 
-
+insert into shopping_cart (id, album_id, song_id, user_id ) values (1, 2, null, 1);
+insert into shopping_cart (id, album_id, song_id, user_id ) values (2, null, 3, 1);
+insert into shopping_cart (id, album_id, song_id, user_id ) values (3, 7, null, 2);
+insert into shopping_cart (id, album_id, song_id, user_id ) values (4, 7, null, 1);
 
 
