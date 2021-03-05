@@ -71,10 +71,6 @@ public class AdminController {
 		return "restricted";
 	}
 	
-	@GetMapping("/error")
-	public String errorPage(ModelMap model) {
-		return "restricted";
-	}
 	
 	
 	/*
