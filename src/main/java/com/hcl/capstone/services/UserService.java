@@ -56,7 +56,7 @@ public class UserService {
 	}
 
 	public User getUserByEmail(String email) {
-		return userRepository.findUserByEmail(email);
+		return userRepository.findOneUserByEmail(email);
 	}
 
 	public User updateUserAdmin(User user, Long role_id) {
