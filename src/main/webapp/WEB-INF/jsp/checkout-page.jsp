@@ -103,7 +103,8 @@
 		</div>
 		<form:form class="p-3 container-fluid">
 			<h3>User Details</h3>
-
+			<input type="hidden" id="total" name="total" value="${total}">
+			<input type="hidden" id="id" name="id" value="${user.id}">
 			<div class="form-group">
 				<label for="name">Name</label> <input type="text"
 					class="form-control" name="name" value="${user.name}"
@@ -258,7 +259,7 @@
 
 			<div class="form-check mt-2">
 				<input class="form-check-input" type="checkbox" id="gridCheck"
-					name="gridCheck"> <label class="form-check-label"
+					name="checkboxValue"> <label class="form-check-label"
 					for="gridCheck"> Save my information </label>
 			</div>
 

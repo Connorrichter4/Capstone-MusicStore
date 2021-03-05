@@ -69,7 +69,6 @@ public class UserService {
 		oldUser.setName(user.getName());
 		oldUser.setCity(user.getCity());
 		oldUser.setEmail(user.getEmail());
-		oldUser.setPassword(user.getPassword());
 		oldUser.setAddress(user.getAddress());
 		oldUser.setState(user.getState());
 		oldUser.setZipcode(user.getZipcode());

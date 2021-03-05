@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,12 +65,14 @@ public class ShoppingCartController {
 	}
 	
 	@PostMapping("/cart")
-	public ModelAndView shippingConfirmation(User user, @RequestParam(value = "gridCheck") String checkboxValue) {
+	public ModelAndView shippingConfirmation(ModelMap model, @ModelAttribute User user,@RequestParam(required = false) String total, @RequestParam(required = false) String checkboxValue) {
 		logger.info(user.toString());
+		model.put("total", total);
 		if(checkboxValue != null) {
 			logger.info("saving user info");
+			userService.updateUser(user);
 		}
-		return new ModelAndView("shipping-confirmation");
+		return new ModelAndView("shipping-confirmation", model);
 	}
 	
 	

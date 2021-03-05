@@ -47,8 +47,20 @@
 		<div class="list-group p-3 mt-2">
 			<h2>Confirmed!</h2>
 			<h4>Your Order Will Be Shipped Shortly!</h4>
-			
-			
+			<div class="list-group">
+				<div
+					class="list-group-item list-group-item-action flex-column align-items-start">
+
+					<h5 class="mb-1">Shipping Address</h5>
+					
+					<div class="">${user.address}, ${user.city}</div>
+					<div class="">${user.state}, ${user.zipcode}</div>
+					<hr/>
+					<div>Total: $${total} </div>
+					<div>Card: ${user.credit_card}</div>
+				</div>
+			</div>
+
 		</div>
 
 
