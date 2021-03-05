@@ -48,15 +48,11 @@ public class UserService {
 		return userRepository.findUserByEmail(email);
 	}
 
-	public User updateUser(User user) {
+	public User updateUserAdmin(User user) {
 		User oldUser = userRepository.findById(user.getId()).get();
 		
-		// check if the updated email matches another users email
-		if(!oldUser.getEmail().equals(user.getEmail())) {
-			logger.info("email updated");
-			
-		}
-		
+		oldUser.setName(user.getName());
+		oldUser.setCity(user.getCity());
 		oldUser.setEmail(user.getEmail());
 		oldUser.setPassword(user.getPassword());
 		oldUser.setAddress(user.getAddress());
@@ -65,6 +61,21 @@ public class UserService {
 		oldUser.setCredit_card(user.getCredit_card());
 		oldUser.setRole(user.getRole());
 		return userRepository.save(oldUser);
+	}
+	
+	public User updateUser(User user) {
+		User oldUser = userRepository.findById(user.getId()).get();
+		
+		oldUser.setName(user.getName());
+		oldUser.setCity(user.getCity());
+		oldUser.setEmail(user.getEmail());
+		oldUser.setPassword(user.getPassword());
+		oldUser.setAddress(user.getAddress());
+		oldUser.setState(user.getState());
+		oldUser.setZipcode(user.getZipcode());
+		oldUser.setCredit_card(user.getCredit_card());
+		return userRepository.save(oldUser);
+		
 	}
 
 	public void deleteUser(Long id) {

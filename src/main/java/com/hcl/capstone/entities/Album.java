@@ -1,5 +1,6 @@
 package com.hcl.capstone.entities;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class Album {
 
 	private String name;
 
-	private Double price;
+	private BigDecimal price;
 	
 	@ManyToOne
 	private Artist artist;
@@ -45,7 +46,7 @@ public class Album {
 	}
 
 
-	public Album(long id, String name, Double price, Artist artist, Date date, String status, String image,
+	public Album(long id, String name, BigDecimal price, Artist artist, Date date, String status, String image,
 			long inventory, Genre genre, List<Song> song) {
 		super();
 		this.id = id;
@@ -81,12 +82,12 @@ public class Album {
 	}
 
 
-	public Double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
 
-	public void setPrice(Double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 

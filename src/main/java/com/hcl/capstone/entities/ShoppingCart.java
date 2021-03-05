@@ -13,7 +13,7 @@ public class ShoppingCart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // might have to change
 	private Long id;
-	
+
 	@ManyToOne
 	private User user;
 

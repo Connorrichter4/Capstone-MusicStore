@@ -55,7 +55,7 @@ public class CustomerController {
 			return new ModelAndView("admin-edit-customer", model);
 		}
 
-		userService.updateUser(user);
+		userService.updateUserAdmin(user);
 		return new ModelAndView("redirect:/admin/customers");
 	}
 

@@ -27,6 +27,9 @@ public class User {
 	
 	private String role;
 	
+	private String city;
+	
+	private String name;
 
 	public Long getId() {
 		return id;
@@ -92,11 +95,31 @@ public class User {
 		this.role = role;
 	}
 
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", address=" + address + ", state="
-				+ state + ", zipcode=" + zipcode + ", credit_card=" + credit_card + ", role=" + role + "]";
+				+ state + ", zipcode=" + zipcode + ", credit_card=" + credit_card + ", role=" + role + ", city=" + city
+				+ ", name=" + name + "]";
 	}
+	
+	
+
 	
 	
 	
