@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="/css/style.css">
 <meta charset="UTF-8">
 
-		<title>Album ${album.id} test</title>
+		<title>Artist ${artist.id} test</title>
 		
 	</head>
 	<body>
@@ -60,20 +60,13 @@
 			<div class="jumbotron border">
 				<div class="row">
 					<div class="main-img p-5 col-md-5 img-thumbnail">
-						<img src="../img/album/Album_${album.id}.png">
+						<img src="../img/artist/Album_${artist.id}.png">
 					</div>
 					<div class="row titles col-md-7 p-5">
 						<div class="col-12 text-center">
-							<h1>${album.name}</h1>
-							<h2>${album.artist.name}</h2>
-							<h4>${album.status}</h4>
+							<h1>${artist.name}</h1>
+							<h2>${artist.location}</h2>
 						</div>
-						<div class="row extra col-md-12 text-center ">
-							<h2>${album.date}</h2>
-						</div>					
-						<div class="row col-md-12 justify-content-center ">
-							<a role="button" class="btn btn-success p-0 m-0 buy-btn btn-lg col-5 h1" href="#">BUY Album for<br/>$${album.price}</a>
-						</div>					
 					</div>
 				</div>
 			</div>
@@ -87,16 +80,29 @@
 				<div class="container-fluid">
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="nav-item col-4"><a class="nav-link active h4"
-							data-toggle="tab" href="#songs">Other Songs From Album</a></li>					
+							data-toggle="tab" href="#albums">Albums From Artist</a></li>					
 						<li class="nav-item col-4"><a class="nav-link h4"
-							data-toggle="tab" href="#albums">Other Albums From Artist</a></li>
+							data-toggle="tab" href="#songs">Songs From Artist</a></li>
 						<li class="nav-item col-4"><a class="nav-link h4"
-							data-toggle="tab" href="#genres">Other Albums From Genre</a></li>
+							data-toggle="tab" href="#genres">Artist Genres</a></li>
 					</ul>
 					<div class="container-fluid">
 						<div class="tab-content">
-							<div id="songs" class="tab-pane active">
-								<h3>Songs</h3>
+							<div id="albums" class="tab-pane active">
+								<h3>Albums: ${artist.name}</h3>
+								<div class="row">
+									<c:forEach items="${artist.album}" var="album">
+										<div class="col-md-2" class="w-100">
+											<a href="/album/${album.id}" class="album-poster"><img
+												src="../img/album/Album_${album.id}.png"></a>
+											<h4>${album.name}</h4>
+											<p>${artist.name}</p>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
+							<div id="songs" class="tab-pane">
+								<h3>Songs: ${artist.name}</h3>
 								<div class="row">
 									<table class="table table-dark table-striped">
 										<tr>
@@ -106,11 +112,11 @@
 											<th class="col-3">ALBUM</th>
 											<th class="col-3">ARTIST</th>
 										</tr>
-										<c:forEach items="${album.song}" var="song">
+										<c:forEach items="${artist.songs}" var="song">
 											<tr>
 												<th scope="row">${song.id}</th>
 												<td>
-<!-- 													Left empty on purpose, redundant picture/link to album -->
+													<a href="/album/${song.album.id}" class="album-poster"><img src="../img/album/Album_${song.album.id}.png"></a>
 												</td>
 												<td>
 													<a href="/song/${song.id}" class="song-link">${song.name}</a>
@@ -118,37 +124,35 @@
 												<td>
 													<a href="/album/${song.album.id}" class="song-link">${song.album.name}</a>
 												</td>
-												<td><a href="/artist/${song.artist.id}"
-													class="song-link">${song.artist.name}</a></td>
+												<td><a href="/artist/${artist.id}" class="song-link">${artist.name}</a></td>
 											</tr>
 										</c:forEach>
 									</table>
 								</div>
 							</div>
-							<div id="albums" class="tab-pane">
-								<h3>Albums: ${album.artist.name}</h3>
-								<div class="row">
-									<c:forEach items="${artist.album}" var="album">
-										<div class="col-md-2" class="w-100">
-											<a href="/album/${album.id}" class="album-poster"><img
-												src="../img/album/Album_${album.id}.png"></a>
-											<h4>${album.name}</h4>
-											<p><a href="/artist/${album.artist.id}" class="name-link">${album.artist.name}</a></p>
-										</div>
-									</c:forEach>
-								</div>
-							</div>
 							<div id="genres" class="tab-pane">
-								<h3>Genres: ${genre.name}</h3>
+								<h3>Genres: ${artist.name}</h3>
 								<div class="row">
-									<c:forEach items="${genre.album}" var="album">
-										<div class="col-md-2" class="w-100">
-											<a href="/album/${album.id}" class="album-poster">
-												<img src="../img/album/Album_${album.id}.png"></a>
-											<h4>${album.name}</h4>
-											<p><a href="/artist/${album.artist.id}" class="name-link">${album.artist.name}</a></p>
-										</div>
-									</c:forEach>
+									<table class="table table-dark table-striped">
+										<tr>
+											<th class="col-1">#</th>
+											<th class="col-1"></th>
+											<th class="col-3">ALBUM</th>
+											<th class="col-3">ARTIST</th>
+										</tr>
+										<c:forEach items="${artist.album}" var="album">
+											<tr>
+												<th scope="row">${album.id}</th>
+												<td><a href="/album/${album.id}" class="album-poster">
+													<img src="../img/album/Album_${album.id}.png" class="w-100"></a>
+												</td>
+												<td><a href="/album/${album.id}" class="song-link">${album.name}</a>
+												</td>
+												<td><a href="/artist/${album.genre.id}" class="song-link">${album.genre.name}</a>
+												</td>
+											</tr>
+										</c:forEach>
+									</table>
 								</div>
 							</div>
 						</div>

@@ -23,5 +23,10 @@ public interface SongRepository extends CrudRepository<Song, Long> {
 	
 	@Query("SELECT song FROM Song song WHERE song.artist.name = :artistName")
 	public List<Song> findByArtistName(@Param("artistName") String artistName);
+	
+	public List<Song> findByNameContains(String name);
+	public List<Song> findByArtistNameContains(String name);
+	public List<Song> findByAlbumNameContains(String name);
+
 
 }
