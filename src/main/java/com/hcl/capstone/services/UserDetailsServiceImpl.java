@@ -30,7 +30,7 @@ public class UserDetailsServiceImpl  implements UserDetailsService{
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
 		
-		User user = userRepository.findUserByEmail(email);
+		User user = userRepository.findOneUserByEmail(email);
 		logger.info(user.toString());
 		
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
