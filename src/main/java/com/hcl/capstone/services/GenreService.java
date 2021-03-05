@@ -83,5 +83,43 @@ public class GenreService {
 
 		return genreRepo.save(newGenre);
 	}
+	
+	/*
+	 * 
+	 * 
+	 * 		SEARCH QUERIES
+	 * 
+	 * 
+	 */
 
+	public List<Genre> search(String search, String criteria){
+		List<Genre> genres = new ArrayList<Genre>();
+		try {
+			switch(criteria) {
+			case "name":
+			case "genre":
+				for (Genre genre : genreRepo.findByNameContains(search)) {
+					genres.add(genre);
+				}				
+				break;
+			case "album":
+				for (Genre genre : genreRepo.findByAlbumNameContains(search)) {
+					genres.add(genre);
+				}
+				break;
+			case "song":
+				for (Genre genre : genreRepo.findByAlbumSongNameContains(search)) {
+					genres.add(genre);
+				}
+				break;
+			}
+				
+			if(genres.isEmpty()) {
+				return (List<Genre>) genreRepo.findAll();
+			}
+			return genres;
+		}catch(Exception ex) {
+			return (List<Genre>) genreRepo.findAll();
+		}
+	}
 }

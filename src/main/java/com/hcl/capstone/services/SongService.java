@@ -1,5 +1,6 @@
 package com.hcl.capstone.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -89,4 +90,43 @@ public class SongService {
 	}
 
 	
+	/*
+	 * 
+	 * 
+	 * 		SEARCH QUERIES
+	 * 
+	 * 
+	 */
+	
+	public List<Song> search(String search, String criteria){
+		List<Song> songs = new ArrayList<Song>();
+		logger.info("======================>>> song service: "+criteria);
+		try {
+			switch(criteria) {
+			case "name":
+			case "song":
+				for (Song song : songRepository.findByNameContains(search)) {
+					logger.info("=================>>> found song <<< ====================");
+					songs.add(song);
+				}				
+				break;
+			case "artist":
+				for (Song song : songRepository.findByArtistNameContains(search)) {
+					songs.add(song);
+				}	
+				break;
+			case "album":
+				for (Song song : songRepository.findByAlbumNameContains(search)) {
+					songs.add(song);
+				}	
+				break;
+			}
+			if(songs.isEmpty()) {
+				return (List<Song>) songRepository.findAll();
+			}
+			return songs;
+		}catch(Exception ex) {
+			return (List<Song>) songRepository.findAll();
+		}
+	}
 }

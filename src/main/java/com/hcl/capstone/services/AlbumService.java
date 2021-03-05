@@ -106,5 +106,62 @@ public class AlbumService {
 		}
 
 	}
+	
+	/*
+	 * 
+	 * 
+	 * 		SEARCH QUERIES
+	 * 
+	 * 
+	 */
+	
+	public List<Album> search(String search, String criteria){
+		List<Album> albums = new ArrayList<Album>();
+		logger.info("======================>>> album service: "+criteria);
+		try {
+			switch(criteria) {
+			case "name":
+			case "album":
+				for (Album album : repo.findByNameContains(search)) {
+					logger.info("======================>>> found an album by "+criteria);
+					albums.add(album);
+				}				
+				break;
+			case "artist":
+				logger.info("======================>>> inside "+criteria+" case");
+				for (Album album : repo.findByArtistNameContains(search)) {
+					logger.info("======================>>> found an album by "+criteria);
+					albums.add(album);
+				}	
+				break;
+			case "genre":
+				for (Album album : repo.findByGenreNameContains(search)) {
+					logger.info("======================>>> found an album by "+criteria);
+					albums.add(album);
+				}	
+				break;
+			case "status":
+				for (Album album : repo.findByStatusContains(search)) {
+					logger.info("======================>>> found an album by "+criteria);
+					albums.add(album);
+				}	
+				break;
+			case "song":
+				for (Album album : repo.findBySongNameContains(search)) {
+					logger.info("======================>>> found an album by "+criteria);
+					albums.add(album);
+				}	
+				break;
+			}
+			if(albums.isEmpty()) {
+				logger.info("======================>>> DID NOT FIND an album by "+criteria);
+				return (List<Album>) repo.findAll();
+			}
+			return albums;
+		}catch(Exception ex) {
+			return (List<Album>) repo.findAll();
+		}
+	}
+	
 
 }

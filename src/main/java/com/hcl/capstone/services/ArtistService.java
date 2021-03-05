@@ -3,6 +3,7 @@ package com.hcl.capstone.services;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.hcl.capstone.entities.Album;
 import com.hcl.capstone.entities.Artist;
+import com.hcl.capstone.entities.Genre;
 import com.hcl.capstone.entities.Song;
 import com.hcl.capstone.repositories.ArtistRepository;
 
@@ -115,6 +117,47 @@ public class ArtistService {
 		
 		artRepo.save( artist2);
 		
+	}
+	
+	
+	/*
+	 * 
+	 * 
+	 * 		SEARCH QUERIES
+	 * 
+	 * 
+	 */
+
+	public List<Artist> search(String search, String criteria){
+		List<Artist> artists = new ArrayList<Artist>();
+		try {
+			switch(criteria) {
+			case "name":
+			case "artist":
+				for (Artist artist : artRepo.findByNameContains(search)) {
+					artists.add(artist);
+				}					
+				break;
+			case "song":
+				for (Artist artist : artRepo.findBySongsNameContains(search)) {
+					artists.add(artist);
+				}
+				break;
+			case "album":
+				for (Artist artist : artRepo.findByAlbumNameContains(search)) {
+					artists.add(artist);
+				}
+				break;
+			
+			}
+			
+			if(artists.isEmpty()) {
+				return (List<Artist>) artRepo.findAll();
+			}
+			return artists;
+		}catch(Exception ex) {
+			return (List<Artist>) artRepo.findAll();
+		}
 	}
 
 }

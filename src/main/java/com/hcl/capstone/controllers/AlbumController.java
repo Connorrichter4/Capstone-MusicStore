@@ -20,6 +20,7 @@ import com.hcl.capstone.entities.Genre;
 import com.hcl.capstone.entities.Song;
 import com.hcl.capstone.services.AlbumService;
 import com.hcl.capstone.services.ArtistService;
+import com.hcl.capstone.services.GenreService;
 import com.hcl.capstone.services.SongService;
 
 
@@ -36,31 +37,78 @@ public class AlbumController {
 	ArtistService artistService;
 	@Autowired
 	SongService songService;
-	
 	@Autowired
-	ArtistService artistService;
+	GenreService genreService;
+
 	
-	@GetMapping("/album")
+	@GetMapping({"/","/index","/home"})
 	public String getAllAlbums(ModelMap map) {
 		logger.info("inside get mapping");
 		List<Album> albums = albumService.findAllAlbums();
 		Iterable<Artist> artists = artistService.getAllArtist();
 		Iterable<Song> songs = songService.getAllSong();
-//		Iterable<Song> genres = songService.getAllGenres(); //TODO: ADD GENRE SERVICE LATER
+		Iterable<Genre> genres = genreService.getAllGenre(); //TODO: ADD GENRE SERVICE LATER
 		map.put("albums", albums);
 		map.put("songs", songs);
 		map.put("artists", artists);
-		map.put("genres", "Under Construction...");	//TODO: add genre service later
-		return "test_album";
+		map.put("genres", genres);	//TODO: add genre service later
+		return "test_home";
 	}
 	
 	@GetMapping("/album/{id}")
 	public String getAlbum(ModelMap map, @PathVariable Long id) {
-		Album album = service.getAlbumById(id).get();
-		logger.info(album.toString());
+		Album album = albumService.getAlbumById(id).get();
+		Artist artist = artistService.getArtistById(album.getArtist().getId()).get();
+		Genre genre = genreService.getGenreById(album.getGenre().getId()).get();
 		map.put("album", album);
-		return "test_this_album";
+		map.put("artist", artist);
+		map.put("genre", genre);
+		return "test_album";
 	}
+	
+	@GetMapping("/song/{id}")
+	public String getSong(ModelMap map, @PathVariable Long id) {
+		Song song = songService.getSongById(id).get();
+		Album album = albumService.getAlbumById(song.getAlbum().getId()).get();
+		Artist artist = artistService.getArtistById(song.getArtist().getId()).get();
+		Genre genre = genreService.getGenreById(song.getAlbum().getGenre().getId()).get();
+		map.put("song", song);
+		map.put("album", album);
+		map.put("artist", artist);
+		map.put("genre", genre);
+		return "test_song";
+	}
+	
+	@GetMapping("/artist/{id}")
+	public String getArtist(ModelMap map, @PathVariable Long id) {
+		Artist artist = artistService.getArtistById(id).get();
+		map.put("artist", artist);
+		return "test_artist";
+	}
+	
+	@GetMapping("/genre/{id}")
+	public String getGenre(ModelMap map, @PathVariable Long id) {
+		Genre genre = genreService.getGenreById(id).get();
+		map.put("genre", genre);
+		return "test_genre";
+	}
+	
+	@PostMapping("/search")
+	public String searchAll(@RequestParam(name="generalSearch") String search,
+			@RequestParam(name="minPrice") String min,
+			@RequestParam(name="maxPrice") String max,
+			@RequestParam(name="criteria") String criteria,
+			ModelMap map) {
+			logger.info("======================>>> controller: "+criteria);
+			map.put("albums", albumService.search(search, criteria));
+			map.put("songs", songService.search(search, criteria));
+			map.put("artists", artistService.search(search, criteria));
+			map.put("genres", genreService.search(search, criteria));
+
+		return "test_home";
+	}
+	
+	
 	
 	/*
 	 * 
@@ -88,7 +136,7 @@ public class AlbumController {
 
 		logger.info(album.toString());
 
-		service.createAlbum(album);
+		albumService.createAlbum(album);
 		return new RedirectView("/admin/");
 
 	}
@@ -96,7 +144,7 @@ public class AlbumController {
 	@GetMapping("/admin/album/{id}")
 	public String getAlbumProduct(ModelMap model, @PathVariable Long id) {
 		
-		Album album = service.getAlbumById(id).get();
+		Album album = albumService.getAlbumById(id).get();
 		logger.info(album.toString());
 		
 		Iterable<Artist> artists = artistService.getAllArtist();
@@ -117,7 +165,7 @@ public class AlbumController {
 	
 
 		logger.info(album.toString());
-		if (service.updateAlbum(id, album)) {
+		if (albumService.updateAlbum(id, album)) {
 			return new ModelAndView("redirect:/admin/");
 		}
 		model.put("error", "There was an error updating the album");
@@ -130,7 +178,7 @@ public class AlbumController {
 		
 		// need to add model for delete success and failure
 		
-		if (service.deleteAlbum(id)) {
+		if (albumService.deleteAlbum(id)) {
 			return new RedirectView("/admin/");
 		}
 		return new RedirectView("/admin/");
