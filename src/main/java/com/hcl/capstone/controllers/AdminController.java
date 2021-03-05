@@ -66,6 +66,17 @@ public class AdminController {
 		return "admin-products";
 	}
 	
+	@GetMapping("/403")
+	public String restrictedPage(ModelMap model) {
+		return "restricted";
+	}
+	
+	@GetMapping("/error")
+	public String errorPage(ModelMap model) {
+		return "restricted";
+	}
+	
+	
 	/*
 	 * 
 	 * 

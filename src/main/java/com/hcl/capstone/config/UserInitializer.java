@@ -30,11 +30,20 @@ public class UserInitializer {
 			roles.add(role);
 		}
 		
+		User admin = new User();
+		
+		admin.setEmail("admin@admin.com");
+		admin.setPassword("password");
+		admin.setRoles(roles);
+		userService.createUser(admin);
+		
 		User user = new User();
-		user.setEmail("admin@admin.com");
+		
+		user.setEmail("user@user.com");
 		user.setPassword("password");
-		user.setRoles(roles);
 		userService.createUser(user);
+		
+		
 	}
 	
 }

@@ -51,4 +51,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		    .csrf();
 	}
 	
+	/*
+	 *     .csrf().disable()
+            .authorizeRequests().antMatchers("/register","/login").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .formLogin().loginPage("/login").failureUrl("/login").defaultSuccessUrl("/home")
+            .and()
+            .logout().invalidateHttpSession(true).clearAuthentication(true)
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            .logoutSuccessUrl("/login")
+            .and()
+            .exceptionHandling().accessDeniedPage("/access-denied");
+	 */
+	
 }
