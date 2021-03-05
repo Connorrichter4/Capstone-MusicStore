@@ -96,7 +96,7 @@ public class ShoppingCartController {
 		cart.setAlbum(null);
 		
 		cartService.addItemToCart(cart);
-		return new RedirectView("/album");
+		return new RedirectView("/song/"+id);
 	}
 	
 	@GetMapping("/add/album/{id}")
@@ -111,7 +111,7 @@ public class ShoppingCartController {
 		
 		cartService.addItemToCart(cart);
 		
-		return new RedirectView("/album");
+		return new RedirectView("/album/" + id);
 	}
 	
 	@GetMapping("/cart/delete/{id}")

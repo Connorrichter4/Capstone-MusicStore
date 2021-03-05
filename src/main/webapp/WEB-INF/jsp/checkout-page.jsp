@@ -40,7 +40,7 @@
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">About</a></li>
 					<li class="nav-item"><form:form action="logout" method="post">
-							<input type="submit" class="nav-link" value="Logout" />
+							<input type="submit" class="btn" value="Logout" />
 						</form:form></li>
 				</ul>
 			</div>

@@ -39,8 +39,8 @@
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
 						<span class="navbar-toggler-icon"></span>
 					</button>
-					<a class="navbar-brand" href="/home">BRAND LOGO</a>
-					<button type="submit" class="btn btn-success float-right"><i class="fa fa-shopping-cart"></i> Cart</button>
+					<a class="navbar-brand" href="/home">MUSIC STORE</a>
+					<a href="/cart" class="btn btn-success float-right"><i class="fa fa-shopping-cart"></i> Cart</a>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item active">
@@ -72,7 +72,7 @@
 							<h2>${album.date}</h2>
 						</div>					
 						<div class="row col-md-12 justify-content-center ">
-							<a role="button" class="btn btn-success p-0 m-0 buy-btn btn-lg col-5 h1" href="#">BUY Album for<br/>$${album.price}</a>
+							<a role="button" class="btn btn-success p-0 m-0 buy-btn btn-lg col-5 h1" href="/add/album/${album.id}">BUY Album for<br/>$${album.price}</a>
 						</div>					
 					</div>
 				</div>

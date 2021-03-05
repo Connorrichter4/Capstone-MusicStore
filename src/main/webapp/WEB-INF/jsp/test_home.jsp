@@ -43,7 +43,7 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<a class="navbar-brand" href="/home">BRAND LOGO</a>
-				<button type="submit" class="btn btn-success float-right"><i class="fa fa-shopping-cart"></i> Cart</button>
+				<a href="/cart" class="btn btn-success float-right"><i class="fa fa-shopping-cart"></i> Cart</a>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active"><a class="nav-link" href="/home">Home
