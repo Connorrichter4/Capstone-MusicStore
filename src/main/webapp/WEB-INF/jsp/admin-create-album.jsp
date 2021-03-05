@@ -17,8 +17,8 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class="d-flex justify-content-center vh-100">
-		<div class="d-flex justify-content-center align-items-center ">
+	<div class="container main bg-light">
+		
 			<form:form id="form" class="border border-3 rounded p-4 m-3">
 				<h1 class="text-center">Album Details:</h1>
 
@@ -46,7 +46,7 @@
 				<div class="input-group mb-3">
 
 					<input type="date" id="date" name="date"
-						class="form-control">
+						class="form-control" required>
 				</div>
 				
 				<label for="image" class="mb-1">Image URL:</label>
@@ -71,17 +71,17 @@
 					</select>
 				</div>
 				
-				<%-- <label for="genre_id" class="mb-1">Genre:</label>
+				<label for="genre_id" class="mb-1">Genre:</label>
 				<div class="input-group mb-2">
 
-					<select name="album_id" id="album_id" class="form-control">
+					<select name="genre_id" id="genre_id" class="form-control">
 						<c:forEach items="${genres}" var="genre">
 							<option value="${genre.id}"
-								<c:if test="${album.genre.id == genre.id}"> selected</c:if>>${genre.name}
+								>${genre.name}
 							</option>
 						</c:forEach>
 					</select>
-				</div> --%>
+				</div>
 				<label for="artist_id" class="mb-1">Artist:</label>
 				<div class="input-group mb-2">
 
@@ -99,7 +99,7 @@
 					<input type="submit" value="Submit">
 				</div>
 			</form:form>
-		</div>
+		
 	</div>
 </body>
 </html>

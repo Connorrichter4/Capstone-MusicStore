@@ -82,6 +82,7 @@ public class AlbumService {
 			oldAlbum.setDate(album.getDate());
 			oldAlbum.setImage(album.getImage());
 			oldAlbum.setArtist(album.getArtist());
+			oldAlbum.setGenre(album.getGenre());
 			repo.save(oldAlbum);
 
 			return true;

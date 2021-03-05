@@ -16,8 +16,8 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class="d-flex justify-content-center vh-100">
-		<div class="d-flex justify-content-center align-items-center ">
+	<div class="container main bg-light">
+		
 			<form:form id="form" class="border border-3 rounded p-4 m-3">
 				<h1 class="text-center">Song Details:</h1>
 
@@ -63,7 +63,7 @@
 					<input type="submit" value="Submit">
 				</div>
 			</form:form>
-		</div>
+		
 	</div>
 </body>
 </html>

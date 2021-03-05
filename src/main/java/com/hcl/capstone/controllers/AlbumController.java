@@ -75,7 +75,7 @@ public class AlbumController {
 		}
 		map.put("album", album);
 		map.put("artist", artist);
-		System.out.println(map);
+		
 		return "test_album";
 	}
 	
@@ -144,10 +144,10 @@ public class AlbumController {
 	}
 	
 	@PostMapping("/admin/album/create")
-	public RedirectView createAlbumProduct(ModelMap model, Album album, @RequestParam Long artist_id) {
+	public RedirectView createAlbumProduct(ModelMap model, Album album, @RequestParam Long artist_id, @RequestParam Long genre_id) {
 		
 		album.setArtist(artistService.getArtistById(artist_id).get());
-
+		album.setGenre(genreService.getGenreById(genre_id).get());
 		logger.info(album.toString());
 
 		albumService.createAlbum(album);
@@ -162,21 +162,22 @@ public class AlbumController {
 		logger.info(album.toString());
 		
 		Iterable<Artist> artists = artistService.getAllArtist();
-		
+		Iterable<Genre> genres = genreService.getAllGenre();
 		
 		model.put("artists", artists);
 		model.put("album", album);
+		model.put("genres", genres);
 		
 		return "admin-edit-album";
 	}
 
 	@PostMapping("/admin/album/{id}")
 	public ModelAndView updateAlbumProduct(ModelMap model, @PathVariable Long id, Album album,
-			@RequestParam Long artist_id) {
+			@RequestParam Long artist_id, @RequestParam Long genre_id) {
 		
 		
 		album.setArtist(artistService.getArtistById(artist_id).get());
-	
+		album.setGenre(genreService.getGenreById(genre_id).get());
 
 		logger.info(album.toString());
 		if (albumService.updateAlbum(id, album)) {
