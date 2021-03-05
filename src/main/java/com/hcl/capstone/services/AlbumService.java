@@ -45,6 +45,10 @@ public class AlbumService {
 		return repo.findByOrderByName();
 	}
 
+	public List<Album> finByGenreId(Long id) {
+		return repo.findByGenreId(id);
+	}
+
 	public List<Album> getAlbumByArtistName(String artist) {
 		return repo.findByArtistName(artist);
 	}

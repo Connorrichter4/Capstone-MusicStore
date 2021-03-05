@@ -17,10 +17,15 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.hcl.capstone.entities.Album;
 import com.hcl.capstone.entities.Artist;
 import com.hcl.capstone.entities.Genre;
-import com.hcl.capstone.entities.Song;
+
 import com.hcl.capstone.services.AlbumService;
 import com.hcl.capstone.services.ArtistService;
 import com.hcl.capstone.services.GenreService;
+
+
+import com.hcl.capstone.entities.Song;
+
+
 import com.hcl.capstone.services.SongService;
 
 
@@ -39,6 +44,10 @@ public class AlbumController {
 	SongService songService;
 	@Autowired
 	GenreService genreService;
+	
+
+	
+
 
 	
 	@GetMapping({"/","/index","/home"})
@@ -58,6 +67,7 @@ public class AlbumController {
 	@GetMapping("/album/{id}")
 	public String getAlbum(ModelMap map, @PathVariable Long id) {
 		Album album = albumService.getAlbumById(id).get();
+
 		Artist artist = artistService.getArtistById(album.getArtist().getId()).get();
 		Genre genre = genreService.getGenreById(album.getGenre().getId()).get();
 		map.put("album", album);
@@ -73,6 +83,7 @@ public class AlbumController {
 		Artist artist = artistService.getArtistById(song.getArtist().getId()).get();
 		Genre genre = genreService.getGenreById(song.getAlbum().getGenre().getId()).get();
 		map.put("song", song);
+
 		map.put("album", album);
 		map.put("artist", artist);
 		map.put("genre", genre);
@@ -121,9 +132,9 @@ public class AlbumController {
 	@GetMapping("/admin/album/create")
 	public String createAlbumForm(ModelMap model) {
 
-//		Iterable<Album> albums = albumService.findAllAlbums();
+		Iterable<Genre> genres = genreService.getAllGenre();
 		Iterable<Artist> artists = artistService.getAllArtist();
-//		model.put("albums", albums);
+		model.put("genres", genres);
 		model.put("artists", artists);
 		
 		return "admin-create-album";

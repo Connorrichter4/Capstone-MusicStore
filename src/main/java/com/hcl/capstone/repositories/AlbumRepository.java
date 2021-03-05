@@ -18,6 +18,7 @@ public interface AlbumRepository extends CrudRepository<Album, Long> {
 	@Query("SELECT album FROM Album album WHERE album.artist.name = :artistName")
 	public List<Album> findByArtistName(@Param("artistName") String artistName);
 	
+
 	public List<Album> findByNameContains(String name);
 	public List<Album> findByArtistNameContains(String name);
 	
@@ -27,6 +28,10 @@ public interface AlbumRepository extends CrudRepository<Album, Long> {
 
 	public List<Album> findBySongNameContains(String name);
 	
+
+	@Query("SELECT album FROM Album album WHERE album.genre.id = :id")
+	public List<Album> findByGenreId(@Param("id") Long id);
+
 	
 	
 }
