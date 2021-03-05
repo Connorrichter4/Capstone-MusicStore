@@ -98,28 +98,56 @@
 
 ### Home Page
 
+![home](https://user-images.githubusercontent.com/58124052/110176365-c8c1b000-7dc8-11eb-95ca-82c3474bc892.png)
+
 ### Album Id Page
+
+![album](https://user-images.githubusercontent.com/58124052/110176962-c9a71180-7dc9-11eb-83a9-e0b85ef391f2.png)
 
 ### Song Id Page
 
+![song](https://user-images.githubusercontent.com/58124052/110176929-b85e0500-7dc9-11eb-85d6-eb5ea457f72e.png)
+
 ### Artist Id Page
+
+![artist](https://user-images.githubusercontent.com/58124052/110176357-c8291980-7dc8-11eb-905d-1887bb45da7a.png)
 
 ### Search Results
 
+![search](https://user-images.githubusercontent.com/58124052/110176368-c95a4680-7dc8-11eb-984c-f44f28b70e03.png)
+
 ### Shopping Cart Page
+
+![cart](https://user-images.githubusercontent.com/58124052/110176360-c8291980-7dc8-11eb-9426-522982fe84b6.png)
 
 ### Completed Checkout Page
 
+![completed-checkout](https://user-images.githubusercontent.com/58124052/110176361-c8291980-7dc8-11eb-95c9-5196585cb567.png)
+
 ### Admin Home Page
+
+![admin-home](https://user-images.githubusercontent.com/58124052/110176354-c7908300-7dc8-11eb-8d6b-e3876c626dce.png)
 
 ### Admin Album Create
 
-### Admin Artist Create
+![album-create](https://user-images.githubusercontent.com/58124052/110176355-c7908300-7dc8-11eb-8bfe-ca7f7fd07de2.png)
 
-### Admin Song Edit
+### Admin Song Create
+
+![song-create](https://user-images.githubusercontent.com/58124052/110176371-c95a4680-7dc8-11eb-878b-6c0d1fe885e5.png)
+
+### Admin Artist Edit
+
+![artist-edit](https://user-images.githubusercontent.com/58124052/110176356-c7908300-7dc8-11eb-9ac7-dd135023ead9.png)
 
 ### Admin Genre Edit
 
+![genre-edit](https://user-images.githubusercontent.com/58124052/110176364-c8c1b000-7dc8-11eb-8cc2-fa4c5c537ed9.png)
+
 ### Admin Customer Page
 
+![admin-customer-home](https://user-images.githubusercontent.com/58124052/110176353-c6f7ec80-7dc8-11eb-8492-b80d600c5903.png)
+
 ### Admin Customer Edit
+
+![custome-edit](https://user-images.githubusercontent.com/58124052/110176362-c8291980-7dc8-11eb-89ad-dcc2781dde20.png)
