@@ -17,6 +17,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="container main">
 	<div class="d-flex p-2">
 		<h2>Albums</h2>
 		<a href="/admin/album/create"><i class="far fa-plus-square fa-2x"></i></a>
@@ -163,6 +164,6 @@
 			</c:forEach>
 		</tbody>
 	</table> 
-	
+	</div>
 </body>
 </html>

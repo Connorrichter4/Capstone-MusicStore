@@ -32,17 +32,17 @@
 					class="form-control" name="email" value="${user.email}">
 			</div>
 
-			<div class="form-group">
+			<%-- <div class="form-group">
 				<label for="role" class="mb-1">Role</label> <select name="role_id"
 					id="role" class="form-control">
 					<option value="1"
-						<%-- <c:if test="${user.role =='USER'}"> selected</c:if>> --%>>User</option>
-					<option value="2"
-						<%-- c:if test="${user.role == 'ADMIN'}"> selected</c:if> --%>>
+						c:if test="${user.role == 'ADMIN'}"> selected</c:if>>
 						Admin</option>
+					<option value="2"
+						<c:if test="${user.role =='USER'}"> selected</c:if>>>User</option>
 
 				</select>
-			</div>
+			</div> --%>
 
 			<div class="form-group">
 				<label for="address">Address</label> <input type="text"

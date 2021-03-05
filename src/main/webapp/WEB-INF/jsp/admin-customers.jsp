@@ -16,16 +16,43 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<h1>List of customers</h1>
-	<c:forEach items="${users}" var="user">
-		<div class="d-flex w-50">
-			<p>${user.email}</p>
-			<a href="/admin/customer/${user.id}"><i class="far fa-edit"></i></a>
-			<a href="/admin/customer/delete/${user.id}"><i
-				class="fas fa-trash"></i></a>
-			
-		</div>
+	<div class="container main">
 
-	</c:forEach>
+	<div class="d-flex p-2">
+		<h2>Users</h2>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Name</th>
+				<th scope="col">Email</th>
+				<th scope="col">State</th>
+				<!-- <th scope="col"></th> -->
+				<!-- <th scope="col"></th> -->
+				<th scope="col"></th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${users}" var="user">
+				<tr>
+					<td>${user.id}</td>
+					<td>${user.name}</td>
+					<td>${user.email}</td>
+					<td>${user.state}</td>
+
+
+
+					<td><a href="/admin/customer/${user.id}"><i
+							class="far fa-edit"></i></a></td>
+					<td><a href="/admin/customer/delete/${user.id}"><i
+							class="fas fa-trash"></i></a></td>
+
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	</div>
 </body>
 </html>

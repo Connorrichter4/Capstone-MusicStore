@@ -49,7 +49,7 @@ public class CustomerController {
 	}
 
 	@PostMapping("/customer/{id}")
-	public ModelAndView updateCustomer(ModelMap model, @PathVariable Long id, User user, @RequestParam Long role_id) {
+	public ModelAndView updateCustomer(ModelMap model, @PathVariable Long id, User user, @RequestParam(required=false) Long role_id) {
 		user.setId(id);
 		// verify valid email using regex
 		Pattern pattern = Pattern.compile(
@@ -62,7 +62,8 @@ public class CustomerController {
 			return new ModelAndView("admin-edit-customer", model);
 		}
 
-		userService.updateUserAdmin(user, role_id);
+//		userService.updateUserAdmin(user, role_id);
+		userService.updateUser(user);
 		return new ModelAndView("redirect:/admin/customers");
 	}
 

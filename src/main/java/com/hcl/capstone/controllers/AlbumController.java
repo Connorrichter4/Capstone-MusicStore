@@ -69,10 +69,13 @@ public class AlbumController {
 		Album album = albumService.getAlbumById(id).get();
 
 		Artist artist = artistService.getArtistById(album.getArtist().getId()).get();
-		Genre genre = genreService.getGenreById(album.getGenre().getId()).get();
+		if(album.getGenre() != null) {
+			Genre genre = genreService.getGenreById(album.getGenre().getId()).get();
+			map.put("genre", genre);
+		}
 		map.put("album", album);
 		map.put("artist", artist);
-		map.put("genre", genre);
+		System.out.println(map);
 		return "test_album";
 	}
 	
