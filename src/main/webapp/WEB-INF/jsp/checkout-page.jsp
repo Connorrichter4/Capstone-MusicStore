@@ -27,16 +27,15 @@
 	<div class="container main">
 		<nav
 			class="conatiner-fluid navbar navbar-expand-lg navbar-light bg-light">
-
-
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<a class="navbar-brand" href="#">Music Store</a>
+			<a class="navbar-brand" href="/home">MUSIC STORE</a>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="/album">Home
+					<li class="nav-item active"><a class="nav-link" href="/home">Home
+							<span class="sr-only">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">About</a></li>
 					<li class="nav-item"><form:form action="logout" method="post">
@@ -44,7 +43,6 @@
 						</form:form></li>
 				</ul>
 			</div>
-
 		</nav>
 
 

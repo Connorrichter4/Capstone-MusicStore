@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -47,8 +48,9 @@
 								<a class="nav-link" href="/home">Home <span class="sr-only">(current)</span> </a>
 							</li>
 							<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">Other</a>
-							</li>
+							<li class="nav-item"><form:form action="logout" method="post">
+							<input type="submit" class="btn" value="Logout" />
+						</form:form></li>
 						</ul>
 					</div>
 				</nav>

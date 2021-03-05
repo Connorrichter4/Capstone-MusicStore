@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -39,16 +40,17 @@
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
 						<span class="navbar-toggler-icon"></span>
 					</button>
-					<a class="navbar-brand" href="/home">BRAND LOGO</a>
-					<button type="submit" class="btn btn-success float-right"><i class="fa fa-shopping-cart"></i> Cart</button>
+					<a class="navbar-brand" href="/home">MUSIC STORE</a>
+					<a href="/cart" class="btn btn-success float-right"><i class="fa fa-shopping-cart"></i> Cart</a>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item active">
 								<a class="nav-link" href="/home">Home <span class="sr-only">(current)</span> </a>
 							</li>
 							<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">Other</a>
-							</li>
+							<li class="nav-item"><form:form action="logout" method="post">
+							<input type="submit" class="btn" value="Logout" />
+						</form:form></li>
 						</ul>
 					</div>
 				</nav>
