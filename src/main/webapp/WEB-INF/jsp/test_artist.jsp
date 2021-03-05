@@ -62,7 +62,7 @@
 			<div class="jumbotron border">
 				<div class="row">
 					<div class="main-img p-5 col-md-5 img-thumbnail">
-						<img src="../img/artist/Album_${artist.id}.png">
+						<img src="../img/artist/Artist_${artist.id}.png">
 					</div>
 					<div class="row titles col-md-7 p-5">
 						<div class="col-12 text-center">
