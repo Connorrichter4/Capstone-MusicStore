@@ -1,5 +1,11 @@
-insert into user (email,name, city, password, address, state, zipcode, credit_card, role) values ('user@user.com','user','new york' ,'password', '1234 apple st', 'NY', '12345', '123456789', 'ADMIN');
-insert into user (email,name, city, password, address, state, zipcode, credit_card, role) values ('test@test.com', 'test', 'dallas','password', '1234 apple st', 'NY', '12345', '123456789', 'ADMIN');
+insert into user (email,name, city, password, address, state, zipcode, credit_card) values ('user@user.com','user','new york' ,'password', '1234 apple st', 'NY', '12345', '123456789');
+insert into user (email,name, city, password, address, state, zipcode, credit_card) values ('test@test.com', 'test', 'dallas','password', '1234 apple st', 'NY', '12345', '123456789');
+
+insert into role (id, name) values (1, 'ROLE_ADMIN');
+insert into role (id, name) values (2, 'ROLE_USER');
+
+--insert into user_role (user_id, role_id) values (3,1);
+--insert into user_role (user_id, role_id) values (3,2);
 
 insert into artist values(1,'Korea','BLACKPINK');
 insert into artist values(2,'Korea','BTS');

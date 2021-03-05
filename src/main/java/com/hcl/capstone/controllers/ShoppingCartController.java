@@ -1,6 +1,7 @@
 package com.hcl.capstone.controllers;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,12 +42,12 @@ public class ShoppingCartController {
 	
 	
 	@GetMapping("/cart")
-	public String showShoppingCart(ModelMap model) {
+	public String showShoppingCart(ModelMap model, Principal principal) {
 		
-		Iterable<ShoppingCart> cartItems = cartService.getAllItemsByUser("user@user.com");
+		Iterable<ShoppingCart> cartItems = cartService.getAllItemsByUser(principal.getName());
 		model.addAttribute("items", cartItems);
-		model.addAttribute("user", userService.getUserByEmail("user@user.com"));
-		
+		model.addAttribute("user", userService.getUserByEmail(principal.getName()));
+		System.out.println(model);
 		BigDecimal total = new BigDecimal(0);
 		
 		for(ShoppingCart item: cartItems) {
@@ -72,14 +73,25 @@ public class ShoppingCartController {
 			logger.info("saving user info");
 			userService.updateUser(user);
 		}
+		
+		// remove all items belonging to user in the shopping cart
+		Iterable<ShoppingCart> cartItems = cartService.getAllItemsByUser(user.getEmail());
+		for(ShoppingCart item: cartItems) {
+			cartService.deleteItem(item.getId());
+		}
+		
+		
 		return new ModelAndView("shipping-confirmation", model);
 	}
 	
 	
 	@GetMapping("/add/song/{id}")
-	public RedirectView addSongToCart(@PathVariable Long id ) {
+	public RedirectView addSongToCart(@PathVariable Long id, Principal principal ) {
+		
+		User user = userService.getUserByEmail(principal.getName());
+		
 		ShoppingCart cart = new ShoppingCart();
-		cart.setUser(userService.getUserById(1L));
+		cart.setUser(user);
 		cart.setSong(songService.getSongById(id).get());
 		cart.setAlbum(null);
 		
@@ -88,9 +100,12 @@ public class ShoppingCartController {
 	}
 	
 	@GetMapping("/add/album/{id}")
-	public RedirectView addAlbumToCart(@PathVariable Long id ) {
+	public RedirectView addAlbumToCart(@PathVariable Long id, Principal principal ) {
+		
+		User user = userService.getUserByEmail(principal.getName());
+		
 		ShoppingCart cart = new ShoppingCart();
-		cart.setUser(userService.getUserById(1L));
+		cart.setUser(user);
 		cart.setSong(null);
 		cart.setAlbum(albumService.getAlbumById(id).get());
 		

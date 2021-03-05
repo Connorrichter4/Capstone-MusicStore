@@ -49,7 +49,7 @@ public class AdminController {
 	GenreService genreService;
 
 
-	@GetMapping("/admin")
+	@GetMapping("/admin/")
 	public String showProducts(ModelMap model) {
 
 		logger.info("inside show admin home");

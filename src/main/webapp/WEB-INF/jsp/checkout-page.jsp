@@ -39,7 +39,9 @@
 					<li class="nav-item active"><a class="nav-link" href="/album">Home
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Other</a></li>
+					<li class="nav-item"><form:form action="logout" method="post">
+							<input type="submit" class="nav-link" value="Logout" />
+						</form:form></li>
 				</ul>
 			</div>
 
